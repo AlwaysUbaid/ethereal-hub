@@ -4,7 +4,7 @@ import AnimatedText from '../ui/AnimatedText';
 import GlassCard from '../ui/GlassCard';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, MapPin, MessageSquare, Phone, Send } from 'lucide-react';
+import { Mail, Phone, Send } from 'lucide-react';
 
 const Contact: React.FC = () => {
   return (
@@ -39,21 +39,6 @@ const Contact: React.FC = () => {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="space-y-6">
-              <GlassCard className="p-6 opacity-0 animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}>
-                <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-lg mr-4">
-                    <MessageSquare className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">Chat with us</h3>
-                    <p className="text-foreground/70 mb-4">Our customer support team is available 24/7 to answer your questions.</p>
-                    <Button variant="outline" className="border-foreground/20 hover:bg-foreground/5">
-                      Start a conversation
-                    </Button>
-                  </div>
-                </div>
-              </GlassCard>
-              
               <GlassCard className="p-6 opacity-0 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
                 <div className="flex items-start">
                   <div className="bg-primary/10 p-3 rounded-lg mr-4">
@@ -76,23 +61,6 @@ const Contact: React.FC = () => {
                     <h3 className="text-lg font-semibold mb-2">Call us</h3>
                     <p className="text-foreground/70 mb-2">Our phone lines are open during business hours.</p>
                     <a href="tel:+1234567890" className="text-primary hover:underline">+1 (234) 567-890</a>
-                  </div>
-                </div>
-              </GlassCard>
-              
-              <GlassCard className="p-6 opacity-0 animate-fade-in" style={{ animationDelay: '0.9s', animationFillMode: 'forwards' }}>
-                <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-lg mr-4">
-                    <MapPin className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">Visit us</h3>
-                    <p className="text-foreground/70 mb-2">Stop by our office during business hours.</p>
-                    <address className="not-italic text-foreground/80">
-                      123 Trading Street<br />
-                      Crypto City, CC 12345<br />
-                      United States
-                    </address>
                   </div>
                 </div>
               </GlassCard>

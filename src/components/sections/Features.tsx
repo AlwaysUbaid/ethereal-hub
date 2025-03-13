@@ -14,9 +14,21 @@ interface Feature {
 
 const Features: React.FC = () => {
   const [mounted, setMounted] = useState(false);
+  const [activeTab, setActiveTab] = useState('exchange');
   
   useEffect(() => {
     setMounted(true);
+    
+    // Auto rotate through tabs
+    const tabInterval = setInterval(() => {
+      setActiveTab(prevTab => {
+        const tabIndex = features.findIndex(f => f.value === prevTab);
+        const nextIndex = (tabIndex + 1) % features.length;
+        return features[nextIndex].value;
+      });
+    }, 5000); // Change tabs every 5 seconds
+    
+    return () => clearInterval(tabInterval);
   }, []);
   
   const features: Feature[] = [
@@ -88,13 +100,13 @@ const Features: React.FC = () => {
         </div>
         
         <div className="opacity-0 animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}>
-          <Tabs defaultValue="exchange" className="w-full">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid grid-cols-3 md:grid-cols-6 bg-background/20 backdrop-blur-sm mb-8">
               {features.map((feature) => (
                 <TabsTrigger 
                   key={feature.value} 
                   value={feature.value}
-                  className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
+                  className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary transition-all duration-300"
                 >
                   {feature.title.split(' ')[0]}
                 </TabsTrigger>
@@ -102,8 +114,12 @@ const Features: React.FC = () => {
             </TabsList>
             
             {features.map((feature) => (
-              <TabsContent key={feature.value} value={feature.value} className="mt-0">
-                <GlassCard className="p-8 animate-scale-in" style={{ animationDelay: '0.1s' }}>
+              <TabsContent 
+                key={feature.value} 
+                value={feature.value} 
+                className="mt-0 transition-all duration-500"
+              >
+                <GlassCard className="p-8 animate-scale-in" style={{ animationDuration: '0.5s' }}>
                   <div className="flex flex-col md:flex-row items-start gap-6">
                     <div className="bg-primary/10 p-4 rounded-lg">
                       {feature.icon}

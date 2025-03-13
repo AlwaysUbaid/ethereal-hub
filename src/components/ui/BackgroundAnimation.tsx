@@ -164,7 +164,7 @@ const BackgroundAnimation: React.FC = () => {
     // Animation function
     const draw = () => {
       // Clear canvas with semi-transparent background for trail effect
-      ctx.fillStyle = 'rgba(155, 40, 4, 0.02)'; // Reduced opacity for fade
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.02)'; // Changed from reddish to black
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       // Draw grid first (in background)
@@ -229,14 +229,17 @@ const BackgroundAnimation: React.FC = () => {
     <div className="fixed inset-0 w-full h-full bg-background -z-10">
       <canvas 
         ref={canvasRef} 
-        className="fixed inset-0 w-full h-full pointer-events-none opacity-55" 
+        className="absolute inset-0 w-full h-full pointer-events-none opacity-55" 
         style={{ 
           position: 'fixed',
-          minHeight: '100vh',
-          minWidth: '100vw',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
           transform: 'translate3d(0,0,0)',
           willChange: 'transform',
           backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
           zIndex: 1
         }}
       />

@@ -4,7 +4,7 @@ import AnimatedText from '../ui/AnimatedText';
 import GlassCard from '../ui/GlassCard';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, Phone, Send } from 'lucide-react';
+import { Mail, Send } from 'lucide-react';
 
 const Contact: React.FC = () => {
   return (
@@ -37,10 +37,10 @@ const Contact: React.FC = () => {
             />
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <GlassCard className="p-6 opacity-0 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
-                <div className="flex items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-1">
+              <GlassCard className="p-6 h-full opacity-0 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
+                <div className="flex items-start h-full">
                   <div className="bg-primary/10 p-3 rounded-lg mr-4">
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
@@ -51,42 +51,41 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
               </GlassCard>
-              
-              <GlassCard className="p-6 opacity-0 animate-fade-in" style={{ animationDelay: '0.7s', animationFillMode: 'forwards' }}>
-                <div className="flex items-start">
-                  <div className="bg-primary/10 p-3 rounded-lg mr-4">
-                    <Phone className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">Call us</h3>
-                    <p className="text-foreground/70 mb-2">Our phone lines are open during business hours.</p>
-                    <a href="tel:+1234567890" className="text-primary hover:underline">+1 (234) 567-890</a>
-                  </div>
-                </div>
-              </GlassCard>
             </div>
             
-            <div className="opacity-0 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
+            <div className="lg:col-span-2 opacity-0 animate-fade-in" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }}>
               <GlassCard className="p-8">
                 <h3 className="text-2xl font-semibold mb-6">Send us a message</h3>
                 <form className="space-y-6">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium">Your Name</label>
-                    <input
-                      id="name"
-                      type="text"
-                      className="w-full px-4 py-2 bg-background/50 border border-border rounded-md focus:ring-2 focus:ring-primary/50 focus:outline-none"
-                      placeholder="John Doe"
-                    />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="text-sm font-medium">Your Name</label>
+                      <input
+                        id="name"
+                        type="text"
+                        className="w-full px-4 py-2 bg-background/50 border border-border rounded-md focus:ring-2 focus:ring-primary/50 focus:outline-none"
+                        placeholder="John Doe"
+                      />
+                    </div>
+                    
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="text-sm font-medium">Email Address</label>
+                      <input
+                        id="email"
+                        type="email"
+                        className="w-full px-4 py-2 bg-background/50 border border-border rounded-md focus:ring-2 focus:ring-primary/50 focus:outline-none"
+                        placeholder="john@example.com"
+                      />
+                    </div>
                   </div>
                   
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium">Email Address</label>
+                    <label htmlFor="subject" className="text-sm font-medium">Subject</label>
                     <input
-                      id="email"
-                      type="email"
+                      id="subject"
+                      type="text"
                       className="w-full px-4 py-2 bg-background/50 border border-border rounded-md focus:ring-2 focus:ring-primary/50 focus:outline-none"
-                      placeholder="john@example.com"
+                      placeholder="How can we help you?"
                     />
                   </div>
                   
@@ -95,7 +94,7 @@ const Contact: React.FC = () => {
                     <Textarea
                       id="message"
                       className="w-full px-4 py-2 bg-background/50 border border-border rounded-md focus:ring-2 focus:ring-primary/50 focus:outline-none min-h-[150px]"
-                      placeholder="How can we help you?"
+                      placeholder="Your message here..."
                     />
                   </div>
                   

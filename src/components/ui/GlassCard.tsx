@@ -8,6 +8,8 @@ interface GlassCardProps {
   hoverEffect?: boolean;
   clickEffect?: boolean;
   onClick?: () => void;
+  onMouseEnter?: () => void;
+  style?: React.CSSProperties;
 }
 
 const GlassCard: React.FC<GlassCardProps> = ({
@@ -15,7 +17,9 @@ const GlassCard: React.FC<GlassCardProps> = ({
   className,
   hoverEffect = false,
   clickEffect = false,
-  onClick
+  onClick,
+  onMouseEnter,
+  style
 }) => {
   return (
     <div
@@ -26,6 +30,8 @@ const GlassCard: React.FC<GlassCardProps> = ({
         className
       )}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      style={style}
     >
       {children}
     </div>

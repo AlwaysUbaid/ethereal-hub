@@ -6,6 +6,7 @@ import Features from '@/components/sections/Features';
 import ProductDetails from '@/components/sections/ProductDetails';
 import CallToAction from '@/components/sections/CallToAction';
 import Contact from '@/components/sections/Contact';
+import BackgroundAnimation from '@/components/ui/BackgroundAnimation';
 
 const Index: React.FC = () => {
   useEffect(() => {
@@ -36,6 +37,7 @@ const Index: React.FC = () => {
   
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <BackgroundAnimation />
       <Navbar />
       <main>
         <Hero />

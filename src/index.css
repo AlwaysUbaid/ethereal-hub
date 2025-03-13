@@ -87,4 +87,32 @@
     animation-duration: calc(2s + (var(--index) * 0.1s));
     animation-delay: calc(var(--index) * 0.05s);
   }
+  
+  /* Spiral animation helpers */
+  .spiral-glow {
+    filter: drop-shadow(0 0 8px hsl(var(--primary)));
+  }
+  
+  .spiral-container {
+    position: relative;
+    overflow: hidden;
+  }
+}
+
+@keyframes spiral-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spiral-pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }

@@ -23,7 +23,7 @@ const BackgroundAnimation: React.FC = () => {
     // Animation variables
     let frame = 0;
     const particles: Particle[] = [];
-    const particleCount = 50;
+    const particleCount = 80; // Increased particle count
     const baseHue = 155; // Match the primary color hue
     
     // Calculate center coordinates once for reuse
@@ -43,11 +43,11 @@ const BackgroundAnimation: React.FC = () => {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 5 + 1;
+        this.size = Math.random() * 5 + 2; // Slightly larger particles
         this.speedX = Math.random() * 2 - 1;
         this.speedY = Math.random() * 2 - 1;
         this.hue = baseHue + Math.random() * 30 - 15;
-        this.opacity = Math.random() * 0.5 + 0.1;
+        this.opacity = Math.random() * 0.7 + 0.3; // Increased opacity
       }
       
       update() {
@@ -85,9 +85,9 @@ const BackgroundAnimation: React.FC = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
           
           if (distance < 150) {
-            const opacity = 0.1 * (1 - distance / 150);
+            const opacity = 0.15 * (1 - distance / 150); // Increased line opacity
             ctx.strokeStyle = `hsla(${baseHue}, 70%, 50%, ${opacity})`;
-            ctx.lineWidth = 0.5;
+            ctx.lineWidth = 0.7; // Slightly thicker lines
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
             ctx.lineTo(particles[b].x, particles[b].y);
@@ -100,11 +100,11 @@ const BackgroundAnimation: React.FC = () => {
     // Draw floating geometric shapes
     const drawShapes = () => {
       // Create several rotating geometric elements
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < 5; i++) { // Increased number of shapes
         const time = frame * 0.001 + i;
         const x = centerX + Math.cos(time) * (canvas.width * 0.2);
         const y = centerY + Math.sin(time) * (canvas.height * 0.15);
-        const size = 50 + Math.sin(time * 1.5) * 20;
+        const size = 70 + Math.sin(time * 1.5) * 30; // Larger shapes
         
         ctx.save();
         ctx.translate(x, y);
@@ -118,17 +118,17 @@ const BackgroundAnimation: React.FC = () => {
           ctx.lineTo(size/2, size/2);
           ctx.lineTo(-size/2, size/2);
           ctx.closePath();
-          ctx.fillStyle = `hsla(${baseHue + 20 * i}, 70%, 50%, 0.05)`;
+          ctx.fillStyle = `hsla(${baseHue + 20 * i}, 70%, 50%, 0.1)`; // Increased opacity
           ctx.fill();
         } else if (i % 3 === 1) {
           // Draw a rectangle
-          ctx.fillStyle = `hsla(${baseHue - 10 * i}, 70%, 50%, 0.05)`;
+          ctx.fillStyle = `hsla(${baseHue - 10 * i}, 70%, 50%, 0.1)`; // Increased opacity
           ctx.fillRect(-size/2, -size/2, size, size);
         } else {
           // Draw a circle
           ctx.beginPath();
           ctx.arc(0, 0, size/2, 0, Math.PI * 2);
-          ctx.fillStyle = `hsla(${baseHue + 30 * i}, 70%, 50%, 0.05)`;
+          ctx.fillStyle = `hsla(${baseHue + 30 * i}, 70%, 50%, 0.1)`; // Increased opacity
           ctx.fill();
         }
         
@@ -136,23 +136,51 @@ const BackgroundAnimation: React.FC = () => {
       }
     };
     
+    // Add grid lines for more structure
+    const drawGrid = () => {
+      const gridSize = 150;
+      const gridOpacity = 0.08; // Subtle but visible grid
+      
+      ctx.strokeStyle = `hsla(${baseHue}, 30%, 50%, ${gridOpacity})`;
+      ctx.lineWidth = 0.5;
+      
+      // Vertical lines
+      for (let x = 0; x < canvas.width; x += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, canvas.height);
+        ctx.stroke();
+      }
+      
+      // Horizontal lines
+      for (let y = 0; y < canvas.height; y += gridSize) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(canvas.width, y);
+        ctx.stroke();
+      }
+    };
+    
     // Animation function
     const draw = () => {
       // Clear canvas with semi-transparent background for trail effect
-      ctx.fillStyle = 'rgba(155, 40, 4, 0.03)'; // Match the background color with opacity
+      ctx.fillStyle = 'rgba(155, 40, 4, 0.02)'; // Reduced opacity for fade
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
+      // Draw grid first (in background)
+      drawGrid();
+      
       // Draw spiral effect
-      for (let s = 0; s < 5; s++) {
-        const spiralOffset = (s * Math.PI * 2) / 5;
-        const spiralSpeed = 0.001;
+      for (let s = 0; s < 7; s++) { // More spirals
+        const spiralOffset = (s * Math.PI * 2) / 7;
+        const spiralSpeed = 0.0009;
         const rotation = frame * spiralSpeed + spiralOffset;
         
         ctx.beginPath();
         
         for (let i = 0; i < 200; i++) {
           const angle = 0.1 * i + rotation;
-          const radius = 30 + (i * (canvas.width * 0.15)) / 200;
+          const radius = 50 + (i * (canvas.width * 0.2)) / 200; // Larger spirals
           
           const x = centerX + radius * Math.cos(angle);
           const y = centerY + radius * Math.sin(angle);
@@ -166,11 +194,14 @@ const BackgroundAnimation: React.FC = () => {
         
         // Set spiral style
         const hue = (baseHue + s * 10) % 360;
-        const alpha = 0.06;
+        const alpha = 0.12; // Increased opacity for spirals
         ctx.strokeStyle = `hsla(${hue}, 70%, 50%, ${alpha})`;
-        ctx.lineWidth = 1.5;
+        ctx.lineWidth = 2; // Thicker lines
         ctx.stroke();
       }
+      
+      // Draw floating geometric shapes
+      drawShapes();
       
       // Update and draw all particles
       particles.forEach(particle => {
@@ -180,9 +211,6 @@ const BackgroundAnimation: React.FC = () => {
       
       // Draw connections between particles
       drawConnections();
-      
-      // Draw floating geometric shapes
-      drawShapes();
       
       frame++;
       requestAnimationFrame(draw);
@@ -200,7 +228,7 @@ const BackgroundAnimation: React.FC = () => {
   return (
     <canvas 
       ref={canvasRef} 
-      className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-50"
+      className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-80" // Increased opacity
     />
   );
 };

@@ -36,28 +36,30 @@ const Index: React.FC = () => {
   }, []);
   
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-background/90 text-foreground overflow-x-hidden relative">
       <BackgroundAnimation />
-      <Navbar />
-      <main>
-        <Hero />
-        <Features />
-        <ProductDetails />
-        <CallToAction />
-        <Contact />
-      </main>
-      <footer className="py-8 border-t border-border/30">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0">
-              <span className="text-xl font-bold text-primary">Elysium</span>
-            </div>
-            <div className="text-sm text-foreground/60">
-              © {new Date().getFullYear()} Elysium. All rights reserved.
+      <div className="relative z-10">
+        <Navbar />
+        <main>
+          <Hero />
+          <Features />
+          <ProductDetails />
+          <CallToAction />
+          <Contact />
+        </main>
+        <footer className="py-8 border-t border-border/30">
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="flex flex-col md:flex-row justify-between items-center">
+              <div className="mb-4 md:mb-0">
+                <span className="text-xl font-bold text-primary">Elysium</span>
+              </div>
+              <div className="text-sm text-foreground/60">
+                © {new Date().getFullYear()} Elysium. All rights reserved.
+              </div>
             </div>
           </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </div>
   );
 };

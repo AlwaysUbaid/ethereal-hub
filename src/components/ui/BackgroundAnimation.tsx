@@ -23,7 +23,7 @@ const BackgroundAnimation: React.FC = () => {
     // Animation variables
     let frame = 0;
     const particles: Particle[] = [];
-    const particleCount = 80; // Increased particle count
+    const particleCount = 50; // CHANGED: Reduced to 50 particles
     const baseHue = 155; // Match the primary color hue
     
     // Calculate center coordinates once for reuse
@@ -43,7 +43,7 @@ const BackgroundAnimation: React.FC = () => {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 5 + 2; // Slightly larger particles
+        this.size = Math.random() * 3 + 1; // CHANGED: Made particles smaller
         this.speedX = Math.random() * 2 - 1;
         this.speedY = Math.random() * 2 - 1;
         this.hue = baseHue + Math.random() * 30 - 15;
@@ -85,9 +85,9 @@ const BackgroundAnimation: React.FC = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
           
           if (distance < 150) {
-            const opacity = 0.15 * (1 - distance / 150); // Increased line opacity
+            const opacity = 0.1 * (1 - distance / 150); // CHANGED: Reduced line opacity
             ctx.strokeStyle = `hsla(${baseHue}, 70%, 50%, ${opacity})`;
-            ctx.lineWidth = 0.7; // Slightly thicker lines
+            ctx.lineWidth = 0.5; // CHANGED: Made lines thinner
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
             ctx.lineTo(particles[b].x, particles[b].y);
@@ -139,7 +139,7 @@ const BackgroundAnimation: React.FC = () => {
     // Add grid lines for more structure
     const drawGrid = () => {
       const gridSize = 150;
-      const gridOpacity = 0.08; // Subtle but visible grid
+      const gridOpacity = 0.05; // CHANGED: Reduced grid opacity for less visibility
       
       ctx.strokeStyle = `hsla(${baseHue}, 30%, 50%, ${gridOpacity})`;
       ctx.lineWidth = 0.5;
@@ -228,7 +228,7 @@ const BackgroundAnimation: React.FC = () => {
   return (
     <canvas 
       ref={canvasRef} 
-      className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-80" // Increased opacity
+      className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-65" // CHANGED: Set opacity to 65%
     />
   );
 };

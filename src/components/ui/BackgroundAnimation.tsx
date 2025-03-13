@@ -23,7 +23,7 @@ const BackgroundAnimation: React.FC = () => {
     // Animation variables
     let frame = 0;
     const particles: Particle[] = [];
-    const particleCount = 50; // CHANGED: Reduced to 50 particles
+    const particleCount = 25; // CHANGED: Reduced to 25 particles
     const baseHue = 155; // Match the primary color hue
     
     // Calculate center coordinates once for reuse
@@ -43,7 +43,7 @@ const BackgroundAnimation: React.FC = () => {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 1; // CHANGED: Made particles smaller
+        this.size = Math.random() * 2 + 0.5; // CHANGED: Made particles even smaller
         this.speedX = Math.random() * 2 - 1;
         this.speedY = Math.random() * 2 - 1;
         this.hue = baseHue + Math.random() * 30 - 15;
@@ -85,9 +85,9 @@ const BackgroundAnimation: React.FC = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
           
           if (distance < 150) {
-            const opacity = 0.1 * (1 - distance / 150); // CHANGED: Reduced line opacity
+            const opacity = 0.08 * (1 - distance / 150); // CHANGED: Reduced line opacity even more
             ctx.strokeStyle = `hsla(${baseHue}, 70%, 50%, ${opacity})`;
-            ctx.lineWidth = 0.5; // CHANGED: Made lines thinner
+            ctx.lineWidth = 0.3; // CHANGED: Made lines even thinner
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);
             ctx.lineTo(particles[b].x, particles[b].y);
@@ -139,7 +139,7 @@ const BackgroundAnimation: React.FC = () => {
     // Add grid lines for more structure
     const drawGrid = () => {
       const gridSize = 150;
-      const gridOpacity = 0.05; // CHANGED: Reduced grid opacity for less visibility
+      const gridOpacity = 0.03; // CHANGED: Reduced grid opacity even more for less visibility
       
       ctx.strokeStyle = `hsla(${baseHue}, 30%, 50%, ${gridOpacity})`;
       ctx.lineWidth = 0.5;
@@ -228,7 +228,12 @@ const BackgroundAnimation: React.FC = () => {
   return (
     <canvas 
       ref={canvasRef} 
-      className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-65" // CHANGED: Set opacity to 65%
+      className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-60" // CHANGED: Set opacity to 60%
+      style={{ 
+        position: 'fixed',  // Ensure it stays fixed during scroll
+        minHeight: '100vh', // Ensure full height
+        minWidth: '100vw'   // Ensure full width
+      }}
     />
   );
 };

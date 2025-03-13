@@ -1,10 +1,13 @@
+
 import React, { useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import AnimatedText from '../ui/AnimatedText';
 import GlassCard from '../ui/GlassCard';
-import { ChevronRight, Download, ExternalLink } from 'lucide-react';
+import { ChevronRight, ExternalLink } from 'lucide-react';
+
 const Hero: React.FC = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
+  
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!terminalRef.current) return;
@@ -19,11 +22,13 @@ const Hero: React.FC = () => {
       const moveY = (clientY - centerY) / 40;
       terminalRef.current.style.transform = `translate(${moveX}px, ${moveY}px)`;
     };
+    
     document.addEventListener('mousemove', handleMouseMove);
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
+
   return <section className="min-h-screen pt-24 pb-20 flex items-center relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-30 overflow-hidden pointer-events-none">
@@ -35,19 +40,19 @@ const Hero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
             <div className="space-y-2">
-              <AnimatedText text="Advanced" className="text-5xl md:text-7xl font-bold text-primary" tag="h1" />
-              <AnimatedText text="Crypto Trading" className="text-5xl md:text-7xl font-bold text-foreground" delay={300} tag="h1" />
-              <AnimatedText text="Platform" className="text-5xl md:text-7xl font-bold text-foreground" delay={600} tag="h1" />
+              <AnimatedText text="Welcome to" className="text-3xl md:text-4xl font-medium text-foreground/80" tag="h2" />
+              <AnimatedText text="Elysium" className="text-6xl md:text-8xl font-bold text-primary" delay={300} tag="h1" />
+              <AnimatedText text="The future of digital trading" className="text-2xl md:text-3xl font-medium text-foreground/90" delay={600} tag="h2" />
             </div>
             
-            <AnimatedText text="Elysium provides professional traders with advanced tools for executing complex strategies on Hyperliquid exchange." className="text-foreground/70 text-lg max-w-xl" delay={900} tag="p" />
+            <AnimatedText text="Elysium provides professional traders with advanced terminal-based tools for executing complex strategies on Hyperliquid exchange." className="text-foreground/70 text-lg max-w-xl" delay={900} tag="p" />
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4 opacity-0 animate-fade-in" style={{
             animationDelay: '1.2s',
             animationFillMode: 'forwards'
           }}>
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                Download Now <Download className="ml-1 h-4 w-4" />
+                Get Started <ChevronRight className="ml-1 h-4 w-4" />
               </Button>
               <Button size="lg" variant="outline" className="border-foreground/20 hover:bg-foreground/5">
                 Explore Features <ExternalLink className="ml-1 h-4 w-4" />
@@ -58,7 +63,7 @@ const Hero: React.FC = () => {
             animationDelay: '1.5s',
             animationFillMode: 'forwards'
           }}>
-              <GlassCard className="flex items-center justify-between p-4 max-w-md">
+              <GlassCard className="flex items-center justify-between p-4 max-w-md" style={{ animationDelay: '0.3s' }}>
                 <div className="flex items-center space-x-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                   <span className="text-sm text-foreground/80">Hyperliquid Mainnet</span>
@@ -76,7 +81,7 @@ const Hero: React.FC = () => {
             animationDelay: '0.3s',
             animationFillMode: 'forwards'
           }}>
-              <GlassCard className="p-1 overflow-hidden rounded-lg">
+              <GlassCard className="p-1 overflow-hidden rounded-lg" style={{ animationDelay: '0.3s' }}>
                 {/* Terminal Header */}
                 <div className="flex items-center p-2 bg-black/20 rounded-t-lg">
                   <div className="flex space-x-2">
@@ -130,4 +135,5 @@ const Hero: React.FC = () => {
       </div>
     </section>;
 };
+
 export default Hero;

@@ -1,53 +1,57 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import GlassCard from '../ui/GlassCard';
 import AnimatedText from '../ui/AnimatedText';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Shield, BarChart, RefreshCw, Zap, Terminal, Layers } from 'lucide-react';
 
 interface Feature {
   icon: React.ReactNode;
   title: string;
   description: string;
+  value: string;
 }
 
 const Features: React.FC = () => {
-  const [activeFeature, setActiveFeature] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
   
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setActiveFeature(0);
-    }, 500);
-    
-    return () => clearTimeout(timeout);
+    setMounted(true);
   }, []);
   
   const features: Feature[] = [
     {
+      value: "exchange",
       icon: <Terminal className="h-8 w-8 text-primary" />,
       title: "Exchange Connectivity",
       description: "Connect seamlessly to both Hyperliquid mainnet and testnet environments for all your trading needs."
     },
     {
+      value: "trading",
       icon: <Layers className="h-8 w-8 text-primary" />,
       title: "Trading Capabilities",
       description: "Execute both spot and perpetual futures trading with adjustable leverage to maximize your strategies."
     },
     {
+      value: "orders",
       icon: <BarChart className="h-8 w-8 text-primary" />,
       title: "Advanced Order Types",
       description: "Place market, limit, and scaled orders with fully customizable parameters for precise execution."
     },
     {
+      value: "twap",
       icon: <RefreshCw className="h-8 w-8 text-primary" />,
       title: "TWAP Execution",
       description: "Implement Time-Weighted Average Price strategy to optimize execution of large orders over time."
     },
     {
+      value: "positions",
       icon: <Zap className="h-8 w-8 text-primary" />,
       title: "Position Management",
       description: "Monitor and manage your trading positions with comprehensive tools for risk assessment."
     },
     {
+      value: "security",
       icon: <Shield className="h-8 w-8 text-primary" />,
       title: "Enhanced Security",
       description: "Trade with confidence using our password-protected interface and secure connection protocols."
@@ -83,23 +87,36 @@ const Features: React.FC = () => {
           />
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <GlassCard
-              key={index}
-              className={`p-8 transition-all duration-500 ease-in-out opacity-0 ${
-                activeFeature !== null && index <= activeFeature ? 'animate-scale-in opacity-100' : ''
-              }`}
-              style={{ animationDelay: `${index * 0.15}s` }}
-              hoverEffect={true}
-              onClick={() => {}}
-              onMouseEnter={() => setActiveFeature(index)}
-            >
-              <div className="mb-6">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-3 text-foreground">{feature.title}</h3>
-              <p className="text-foreground/70">{feature.description}</p>
-            </GlassCard>
-          ))}
+        <div className="opacity-0 animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}>
+          <Tabs defaultValue="exchange" className="w-full">
+            <TabsList className="grid grid-cols-3 md:grid-cols-6 bg-background/20 backdrop-blur-sm mb-8">
+              {features.map((feature) => (
+                <TabsTrigger 
+                  key={feature.value} 
+                  value={feature.value}
+                  className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary"
+                >
+                  {feature.title.split(' ')[0]}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+            
+            {features.map((feature) => (
+              <TabsContent key={feature.value} value={feature.value} className="mt-0">
+                <GlassCard className="p-8 animate-scale-in" style={{ animationDelay: '0.1s' }}>
+                  <div className="flex flex-col md:flex-row items-start gap-6">
+                    <div className="bg-primary/10 p-4 rounded-lg">
+                      {feature.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-semibold mb-3 text-foreground">{feature.title}</h3>
+                      <p className="text-foreground/70 text-lg">{feature.description}</p>
+                    </div>
+                  </div>
+                </GlassCard>
+              </TabsContent>
+            ))}
+          </Tabs>
         </div>
       </div>
     </section>

@@ -5,6 +5,7 @@ import Hero from '@/components/sections/Hero';
 import Features from '@/components/sections/Features';
 import ProductDetails from '@/components/sections/ProductDetails';
 import CallToAction from '@/components/sections/CallToAction';
+import Contact from '@/components/sections/Contact';
 
 const Index: React.FC = () => {
   useEffect(() => {
@@ -41,6 +42,7 @@ const Index: React.FC = () => {
         <Features />
         <ProductDetails />
         <CallToAction />
+        <Contact />
       </main>
       <footer className="py-8 border-t border-border/30">
         <div className="container mx-auto px-4 md:px-6">

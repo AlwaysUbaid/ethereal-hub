@@ -3,24 +3,52 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import GlassCard from '../ui/GlassCard';
 import AnimatedText from '../ui/AnimatedText';
-import { ArrowRight, Github, ExternalLink, Download, Command } from 'lucide-react';
+import { ArrowRight, Github, ExternalLink, Command, Check, ChevronRight } from 'lucide-react';
 
 const CallToAction: React.FC = () => {
-  const resources = [
+  const pricingPlans = [
     {
-      icon: <Command className="h-6 w-6 text-primary" />,
-      title: "Command Reference",
-      description: "Explore the complete list of available commands and their syntax."
+      name: "Basic",
+      price: "$29",
+      period: "/month",
+      features: [
+        "Core features",
+        "Basic analytics",
+        "1 user",
+        "24/7 support"
+      ],
+      popular: false
     },
     {
-      icon: <Github className="h-6 w-6 text-primary" />,
-      title: "GitHub Repository",
-      description: "Access the source code and contribute to Elysium's development."
+      name: "Pro",
+      price: "$79",
+      period: "/month",
+      features: [
+        "All Basic features",
+        "Advanced analytics",
+        "5 users",
+        "Priority support",
+        "API access"
+      ],
+      popular: true
+    },
+    {
+      name: "Enterprise",
+      price: "$199",
+      period: "/month",
+      features: [
+        "All Pro features",
+        "Custom solutions",
+        "Unlimited users",
+        "Dedicated account manager",
+        "White labeling"
+      ],
+      popular: false
     }
   ];
   
   return (
-    <section id="get-started" className="py-24 relative overflow-hidden">
+    <section id="pricing" className="py-24 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-30 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 right-1/4 w-1/2 h-1/2 rounded-full bg-primary/10 blur-3xl"></div>
@@ -28,42 +56,62 @@ const CallToAction: React.FC = () => {
       </div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <AnimatedText 
-              text="Get Started Today" 
+              text="READY TO TRANSFORM YOUR EXPERIENCE?" 
               className="text-sm md:text-base uppercase tracking-wider text-primary mb-2"
               tag="p"
             />
             <AnimatedText 
-              text="Start trading on Hyperliquid with Elysium" 
+              text="Start your journey with Elysium today" 
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground"
               delay={300}
               tag="h2"
             />
             <AnimatedText 
-              text="Download Elysium now and take your trading to the next level with powerful terminal-based tools" 
+              text="Join thousands of satisfied users who have already elevated their digital presence" 
               className="text-xl text-foreground/70 mt-4"
               delay={600}
               tag="p"
             />
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-            {resources.map((resource, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {pricingPlans.map((plan, index) => (
               <GlassCard
                 key={index}
-                className="p-6 opacity-0 animate-fade-in"
-                style={{ animationDelay: `${index * 0.3}s`, animationFillMode: 'forwards' }}
-                hoverEffect={true}
+                className={`p-8 rounded-xl ${plan.popular ? 'border-2 border-primary' : ''} opacity-0 animate-fade-in`}
+                style={{ animationDelay: `${index * 0.2}s`, animationFillMode: 'forwards' }}
               >
-                <div className="flex items-start">
-                  <div className="bg-foreground/5 p-3 rounded-lg mr-4">{resource.icon}</div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">{resource.title}</h3>
-                    <p className="text-foreground/70 text-sm">{resource.description}</p>
+                {plan.popular && (
+                  <div className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/4">
+                    <div className="bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full">
+                      Most Popular
+                    </div>
                   </div>
+                )}
+                
+                <div className="text-xl font-bold mb-4">{plan.name}</div>
+                <div className="flex items-baseline mb-6">
+                  <span className="text-4xl font-bold">{plan.price}</span>
+                  <span className="text-foreground/60 ml-1">{plan.period}</span>
                 </div>
+                
+                <ul className="space-y-3 mb-8">
+                  {plan.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-center text-foreground/80">
+                      <Check className="h-5 w-5 text-primary mr-2 flex-shrink-0" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+                
+                <Button 
+                  className={`w-full ${plan.popular ? 'bg-primary hover:bg-primary/90' : 'bg-background border border-foreground/20 hover:bg-foreground/5 text-foreground'}`}
+                >
+                  Get Started
+                </Button>
               </GlassCard>
             ))}
           </div>
@@ -75,15 +123,8 @@ const CallToAction: React.FC = () => {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                  Download Now <Download className="ml-2 h-4 w-4" />
+                  Get Started <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
-                <Button size="lg" variant="outline" className="border-foreground/20 hover:bg-foreground/5">
-                  Learn More <ExternalLink className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
-              
-              <div className="mt-8 text-sm text-foreground/60">
-                Available for macOS, Windows, and Linux. Requires Node.js version 16+.
               </div>
             </div>
           </GlassCard>

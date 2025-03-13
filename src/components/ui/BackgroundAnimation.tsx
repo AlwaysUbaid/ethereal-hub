@@ -26,6 +26,10 @@ const BackgroundAnimation: React.FC = () => {
     const particleCount = 50;
     const baseHue = 155; // Match the primary color hue
     
+    // Calculate center coordinates once for reuse
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    
     // Particle class for more complex movement
     class Particle {
       x: number;
@@ -137,9 +141,6 @@ const BackgroundAnimation: React.FC = () => {
       // Clear canvas with semi-transparent background for trail effect
       ctx.fillStyle = 'rgba(155, 40, 4, 0.03)'; // Match the background color with opacity
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
       
       // Draw spiral effect
       for (let s = 0; s < 5; s++) {

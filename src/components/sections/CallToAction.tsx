@@ -1,129 +1,92 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import AnimatedText from '../ui/AnimatedText';
 import GlassCard from '../ui/GlassCard';
-import { ChevronRight } from 'lucide-react';
+import AnimatedText from '../ui/AnimatedText';
+import { ArrowRight, Github, ExternalLink, Download, Command } from 'lucide-react';
 
 const CallToAction: React.FC = () => {
+  const resources = [
+    {
+      icon: <Command className="h-6 w-6 text-primary" />,
+      title: "Command Reference",
+      description: "Explore the complete list of available commands and their syntax."
+    },
+    {
+      icon: <Github className="h-6 w-6 text-primary" />,
+      title: "GitHub Repository",
+      description: "Access the source code and contribute to Elysium's development."
+    }
+  ];
+  
   return (
-    <section id="pricing" className="py-24 relative overflow-hidden">
+    <section id="get-started" className="py-24 relative overflow-hidden">
       {/* Background decorative elements */}
-      <div className="absolute inset-0 opacity-40 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/3 left-1/3 w-1/3 h-1/3 rounded-full bg-primary/10 blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-1/3 h-1/3 rounded-full bg-accent/10 blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+      <div className="absolute inset-0 opacity-30 overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 right-1/4 w-1/2 h-1/2 rounded-full bg-primary/10 blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-1/2 h-1/2 rounded-full bg-accent/10 blur-3xl"></div>
       </div>
       
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex flex-col items-center justify-center">
-          <div className="text-center max-w-3xl">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
             <AnimatedText 
-              text="Ready to transform your experience?" 
+              text="Get Started Today" 
               className="text-sm md:text-base uppercase tracking-wider text-primary mb-2"
               tag="p"
             />
             <AnimatedText 
-              text="Start your journey with Elysium today" 
+              text="Start trading on Hyperliquid with Elysium" 
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground"
               delay={300}
               tag="h2"
             />
             <AnimatedText 
-              text="Join thousands of satisfied users who have already elevated their digital presence" 
-              className="text-xl text-foreground/70 mt-4 mb-8"
+              text="Download Elysium now and take your trading to the next level with powerful terminal-based tools" 
+              className="text-xl text-foreground/70 mt-4"
               delay={600}
               tag="p"
             />
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl mt-12">
-            {[
-              {
-                name: "Basic",
-                price: "$29",
-                features: ["Core features", "Basic analytics", "1 user", "24/7 support"]
-              },
-              {
-                name: "Pro",
-                price: "$79",
-                featured: true,
-                features: ["All Basic features", "Advanced analytics", "5 users", "Priority support", "API access"]
-              },
-              {
-                name: "Enterprise",
-                price: "$199",
-                features: ["All Pro features", "Custom solutions", "Unlimited users", "Dedicated account manager", "White labeling"]
-              }
-            ].map((plan, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            {resources.map((resource, index) => (
               <GlassCard
                 key={index}
-                className={`flex flex-col ${plan.featured ? 'border-primary/30 bg-white/10' : ''} opacity-0 animate-fade-in`}
-                style={{ animationDelay: `${0.3 + index * 0.2}s`, animationFillMode: 'forwards' }}
+                className="p-6 opacity-0 animate-fade-in"
+                style={{ animationDelay: `${index * 0.3}s`, animationFillMode: 'forwards' }}
                 hoverEffect={true}
               >
-                {plan.featured && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
-                    Most Popular
-                  </div>
-                )}
-                <div className="mb-6">
-                  <h3 className="text-xl font-semibold text-foreground">{plan.name}</h3>
-                  <div className="mt-2 flex items-baseline">
-                    <span className="text-3xl font-bold text-foreground">{plan.price}</span>
-                    <span className="text-foreground/70 ml-1">/month</span>
+                <div className="flex items-start">
+                  <div className="bg-foreground/5 p-3 rounded-lg mr-4">{resource.icon}</div>
+                  <div>
+                    <h3 className="text-lg font-semibold mb-2">{resource.title}</h3>
+                    <p className="text-foreground/70 text-sm">{resource.description}</p>
                   </div>
                 </div>
-                
-                <div className="flex-grow">
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, i) => (
-                      <li key={i} className="flex items-center">
-                        <div className="bg-primary/10 p-1 rounded-full mr-3">
-                          <ChevronRight className="h-3 w-3 text-primary" />
-                        </div>
-                        <span className="text-foreground/80 text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <Button 
-                  className={`w-full ${
-                    plan.featured 
-                      ? 'bg-primary hover:bg-primary/90 text-primary-foreground' 
-                      : 'bg-secondary hover:bg-secondary/90 text-foreground'
-                  }`}
-                >
-                  Get Started
-                </Button>
               </GlassCard>
             ))}
           </div>
           
-          <div className="mt-20 text-center" id="contact">
-            <GlassCard className="max-w-3xl mx-auto opacity-0 animate-fade-in" style={{ animationDelay: '1s', animationFillMode: 'forwards' }}>
-              <AnimatedText 
-                text="Have questions?" 
-                className="text-xl font-semibold text-foreground mb-2"
-                tag="h3"
-                delay={1200}
-              />
-              <AnimatedText 
-                text="Our team is ready to help you get started with Elysium" 
-                className="text-foreground/80 mb-6"
-                tag="p"
-                delay={1400}
-              />
+          <GlassCard className="p-8 rounded-xl text-center opacity-0 animate-fade-in" style={{ animationDelay: '0.9s', animationFillMode: 'forwards' }}>
+            <div className="max-w-3xl mx-auto">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4">Ready to elevate your trading experience?</h3>
+              <p className="text-foreground/70 mb-8">Join professional traders who rely on Elysium for executing complex strategies on Hyperliquid exchange.</p>
+              
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="outline" className="border-foreground/20 hover:bg-foreground/5">
-                  View Documentation
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                  Download Now <Download className="ml-2 h-4 w-4" />
                 </Button>
-                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                  Contact Sales
+                <Button size="lg" variant="outline" className="border-foreground/20 hover:bg-foreground/5">
+                  Learn More <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </div>
-            </GlassCard>
-          </div>
+              
+              <div className="mt-8 text-sm text-foreground/60">
+                Available for macOS, Windows, and Linux. Requires Node.js version 16+.
+              </div>
+            </div>
+          </GlassCard>
         </div>
       </div>
     </section>

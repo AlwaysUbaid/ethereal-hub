@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import GlassCard from '../ui/GlassCard';
 import AnimatedText from '../ui/AnimatedText';
-import { Zap, Shield, BarChart, Layers, Compass, Globe } from 'lucide-react';
+import { Shield, BarChart, RefreshCw, Zap, Terminal, Layers } from 'lucide-react';
 
 interface Feature {
   icon: React.ReactNode;
@@ -23,34 +23,34 @@ const Features: React.FC = () => {
   
   const features: Feature[] = [
     {
-      icon: <Zap className="h-8 w-8 text-primary" />,
-      title: "Lightning Fast",
-      description: "Experience unparalleled performance with our optimized architecture delivering instant results."
-    },
-    {
-      icon: <Shield className="h-8 w-8 text-primary" />,
-      title: "Enterprise Security",
-      description: "Bank-level encryption and advanced threat protection to keep your data secure and private."
-    },
-    {
-      icon: <BarChart className="h-8 w-8 text-primary" />,
-      title: "Advanced Analytics",
-      description: "Gain valuable insights with our powerful analytics tools designed for actionable intelligence."
+      icon: <Terminal className="h-8 w-8 text-primary" />,
+      title: "Exchange Connectivity",
+      description: "Connect seamlessly to both Hyperliquid mainnet and testnet environments for all your trading needs."
     },
     {
       icon: <Layers className="h-8 w-8 text-primary" />,
-      title: "Seamless Integration",
-      description: "Connect with your existing workflow through our extensive API and integration capabilities."
+      title: "Trading Capabilities",
+      description: "Execute both spot and perpetual futures trading with adjustable leverage to maximize your strategies."
     },
     {
-      icon: <Compass className="h-8 w-8 text-primary" />,
-      title: "Intuitive Interface",
-      description: "Navigate effortlessly with our user-centered design that prioritizes ease of use."
+      icon: <BarChart className="h-8 w-8 text-primary" />,
+      title: "Advanced Order Types",
+      description: "Place market, limit, and scaled orders with fully customizable parameters for precise execution."
     },
     {
-      icon: <Globe className="h-8 w-8 text-primary" />,
-      title: "Global Accessibility",
-      description: "Access your data anytime, anywhere with our globally distributed infrastructure."
+      icon: <RefreshCw className="h-8 w-8 text-primary" />,
+      title: "TWAP Execution",
+      description: "Implement Time-Weighted Average Price strategy to optimize execution of large orders over time."
+    },
+    {
+      icon: <Zap className="h-8 w-8 text-primary" />,
+      title: "Position Management",
+      description: "Monitor and manage your trading positions with comprehensive tools for risk assessment."
+    },
+    {
+      icon: <Shield className="h-8 w-8 text-primary" />,
+      title: "Enhanced Security",
+      description: "Trade with confidence using our password-protected interface and secure connection protocols."
     }
   ];
   
@@ -65,18 +65,18 @@ const Features: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <AnimatedText 
-            text="Feature-rich platform" 
+            text="Key Features" 
             className="text-sm md:text-base uppercase tracking-wider text-primary mb-2"
             tag="p"
           />
           <AnimatedText 
-            text="Powerful capabilities designed for you" 
+            text="Advanced Trading Functionality" 
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground"
             delay={300}
             tag="h2"
           />
           <AnimatedText 
-            text="Discover how Elysium transforms your digital experience with these innovative features" 
+            text="Discover the powerful capabilities that make Elysium the preferred platform for professional traders" 
             className="text-xl text-foreground/70 mt-4"
             delay={600}
             tag="p"

@@ -226,17 +226,21 @@ const BackgroundAnimation: React.FC = () => {
   }, []);
   
   return (
-    <canvas 
-      ref={canvasRef} 
-      className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-55" // CHANGED: Set opacity to 55%
-      style={{ 
-        position: 'fixed',  // Ensure it stays fixed during scroll
-        minHeight: '100vh', // Ensure full height
-        minWidth: '100vw',  // Ensure full width
-        transform: 'translate3d(0,0,0)', // Force hardware acceleration for smoother scrolling
-        willChange: 'transform' // Hint to the browser that the element will change
-      }}
-    />
+    <div className="fixed inset-0 w-full h-full bg-background -z-10">
+      <canvas 
+        ref={canvasRef} 
+        className="fixed inset-0 w-full h-full pointer-events-none opacity-55" 
+        style={{ 
+          position: 'fixed',
+          minHeight: '100vh',
+          minWidth: '100vw',
+          transform: 'translate3d(0,0,0)',
+          willChange: 'transform',
+          backfaceVisibility: 'hidden',
+          zIndex: 1
+        }}
+      />
+    </div>
   );
 };
 

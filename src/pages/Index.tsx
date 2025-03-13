@@ -36,7 +36,7 @@ const Index: React.FC = () => {
   }, []);
   
   return (
-    <div className="min-h-screen bg-background/90 text-foreground overflow-x-hidden relative">
+    <div className="min-h-screen overflow-x-hidden relative">
       <BackgroundAnimation />
       <div className="relative z-10 w-full">
         <Navbar />

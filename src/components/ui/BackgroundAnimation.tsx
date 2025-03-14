@@ -164,7 +164,7 @@ const BackgroundAnimation: React.FC = () => {
     // Animation function
     const draw = () => {
       // Clear canvas with semi-transparent background for trail effect
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.02)'; // Changed from reddish to black
+      ctx.fillStyle = 'rgba(155, 40, 4, 0.02)'; // Reduced opacity for fade
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       // Draw grid first (in background)
@@ -226,24 +226,17 @@ const BackgroundAnimation: React.FC = () => {
   }, []);
   
   return (
-    <div className="fixed inset-0 w-full h-full bg-background -z-10">
-      <canvas 
-        ref={canvasRef} 
-        className="absolute inset-0 w-full h-full pointer-events-none opacity-55" 
-        style={{ 
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          transform: 'translate3d(0,0,0)',
-          willChange: 'transform',
-          backfaceVisibility: 'hidden',
-          WebkitBackfaceVisibility: 'hidden',
-          zIndex: 1
-        }}
-      />
-    </div>
+    <canvas 
+      ref={canvasRef} 
+      className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-55" // CHANGED: Set opacity to 55%
+      style={{ 
+        position: 'fixed',  // Ensure it stays fixed during scroll
+        minHeight: '100vh', // Ensure full height
+        minWidth: '100vw',  // Ensure full width
+        transform: 'translate3d(0,0,0)', // Force hardware acceleration for smoother scrolling
+        willChange: 'transform' // Hint to the browser that the element will change
+      }}
+    />
   );
 };
 

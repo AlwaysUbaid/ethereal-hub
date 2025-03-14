@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from "@/lib/utils";
@@ -111,22 +110,11 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu with fixed position */}
+      {/* Mobile menu with fixed position and className instead of inline style */}
       {isOpen && (
         <div 
           id="mobile-menu"
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 40,
-            backgroundColor: '#0C1B14',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          className="fixed inset-0 z-40 bg-[#0C1B14] flex items-center justify-center"
         >
           <div className="flex flex-col items-center justify-center space-y-8 w-full px-6">
             {navItems.map((item) => (

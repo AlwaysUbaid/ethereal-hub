@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from "@/lib/utils";
@@ -113,25 +114,25 @@ const Navbar: React.FC = () => {
       {isOpen && (
         <div 
           id="mobile-menu"
-          className="fixed inset-0 z-40 flex flex-col pt-20 px-6"
+          className="fixed inset-0 z-40 flex items-center justify-center"
           style={{ 
-            backgroundColor: '#0C1B14', 
+            backgroundColor: '#0C1B14',
             opacity: 1
           }}
         >
-          <div className="flex flex-col space-y-6">
+          <div className="flex flex-col items-center justify-center space-y-8 w-full px-6">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-xl font-medium text-foreground hover:text-primary"
+                className="text-2xl font-medium text-center text-foreground hover:text-primary transition-colors"
                 onClick={closeMenu}
               >
                 {item.name}
               </a>
             ))}
             <Button 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground mt-2" 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground mt-4 w-full max-w-xs" 
               onClick={closeMenu}
             >
               Get Started <ChevronRight className="ml-1 h-4 w-4" />

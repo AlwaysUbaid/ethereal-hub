@@ -5,25 +5,25 @@
 
 @layer base {
   :root {
-    --background: 155 40% 4%;
+    --background: 155 40% 2%; /* Darker background */
     --foreground: 155 3% 96%;
 
-    --card: 155 30% 6%;
+    --card: 155 30% 4%; /* Darker card background */
     --card-foreground: 155 3% 96%;
 
-    --popover: 155 40% 4%;
+    --popover: 155 40% 2%; /* Darker popover background */
     --popover-foreground: 155 3% 96%;
 
     --primary: 155 90% 50%;
     --primary-foreground: 155 10% 3%;
 
-    --secondary: 155 10% 12%;
+    --secondary: 155 10% 10%; /* Darker secondary */
     --secondary-foreground: 155 3% 96%;
 
     --accent: 143 70% 45%;
     --accent-foreground: 155 3% 96%;
 
-    --muted: 155 15% 12%;
+    --muted: 155 15% 10%; /* Darker muted */
     --muted-foreground: 155 3% 60%;
 
     --destructive: 0 84.2% 60.2%;
@@ -68,7 +68,7 @@
   }
 
   .glass-card {
-    @apply backdrop-blur-lg bg-white/15 border border-white/15 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.3)];
+    @apply backdrop-blur-lg bg-black/30 border border-white/10 shadow-[0_4px_12px_-2px_rgba(0,0,0,0.4)];
   }
   
   .text-balance {

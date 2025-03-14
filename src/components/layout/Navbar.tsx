@@ -122,8 +122,6 @@ const Navbar: React.FC = () => {
           "fixed inset-0 bg-background/95 backdrop-blur-lg z-50 transition-all duration-300",
           isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         )}
-        onClick={closeMenu}
-        aria-hidden="true"
       />
 
       {/* Mobile Navigation */}
@@ -135,15 +133,7 @@ const Navbar: React.FC = () => {
         )}
         aria-hidden={!isOpen}
       >
-        <div className="absolute top-4 right-4 z-[70]">
-          <button
-            onClick={closeMenu}
-            className="p-2 rounded-md focus:outline-none text-foreground hover:text-primary transition-colors"
-            aria-label="Close menu"
-          >
-            <X className="h-8 w-8" />
-          </button>
-        </div>
+        {/* Removed the duplicate close button here */}
         
         <div className="flex flex-col h-full overflow-y-auto p-6">
           <div className="flex flex-col space-y-8 mt-4">

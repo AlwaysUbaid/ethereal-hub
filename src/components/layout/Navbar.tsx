@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from "@/lib/utils";
@@ -14,7 +13,6 @@ const Navbar: React.FC = () => {
   const closeMenu = () => setIsOpen(false);
   const toggleMenu = () => setIsOpen(!isOpen);
   
-  // Close the menu when the escape key is pressed
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -26,7 +24,6 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('keydown', handleEscape);
   }, []);
 
-  // Close the mobile menu when window is resized to desktop size
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -48,7 +45,6 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Directly manipulate body style to prevent scrolling when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -81,7 +77,6 @@ const Navbar: React.FC = () => {
             <span className="text-2xl font-bold text-primary">Elysium</span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             <div className="flex items-center space-x-6">
               {navItems.map((item) => (
@@ -99,7 +94,6 @@ const Navbar: React.FC = () => {
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2 z-50 relative text-foreground hover:text-primary"
             onClick={toggleMenu}
@@ -116,12 +110,14 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation with solid background */}
       {isOpen && (
         <div 
           id="mobile-menu"
           className="fixed inset-0 z-40 flex flex-col pt-20 px-6"
-          style={{ backgroundColor: '#0C1B14' }} // Always use solid background color
+          style={{ 
+            backgroundColor: '#0C1B14', 
+            opacity: 1
+          }}
         >
           <div className="flex flex-col space-y-6">
             {navItems.map((item) => (

@@ -111,13 +111,22 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
+      {/* Mobile menu with fixed position */}
       {isOpen && (
         <div 
           id="mobile-menu"
-          className="fixed inset-0 z-40 flex items-center justify-center"
-          style={{ 
+          className="fixed inset-0 z-40 bg-[#0C1B14]"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 40,
             backgroundColor: '#0C1B14',
-            opacity: 1
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <div className="flex flex-col items-center justify-center space-y-8 w-full px-6">

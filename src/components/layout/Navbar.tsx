@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent scrolling when mobile menu is open
+  // Directly manipulate body style to prevent scrolling when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -88,7 +88,7 @@ const Navbar: React.FC = () => {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-primary after:origin-bottom-right after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300"
+                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
                 >
                   {item.name}
                 </a>
@@ -101,59 +101,47 @@ const Navbar: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 z-[100] relative transition-colors hover:text-primary"
+            className="md:hidden p-2 z-50 relative text-foreground hover:text-primary"
             onClick={toggleMenu}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
           >
             {isOpen ? (
-              <X className="h-6 w-6 text-foreground" />
+              <X className="h-6 w-6" />
             ) : (
-              <Menu className="h-6 w-6 text-foreground" />
+              <Menu className="h-6 w-6" />
             )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation Overlay */}
-      <div
-        className={cn(
-          "fixed inset-0 bg-background/95 backdrop-blur-lg z-40 transition-all duration-300",
-          isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
-        )}
-      />
-
-      {/* Mobile Navigation */}
-      <div
-        id="mobile-menu"
-        className={cn(
-          "fixed inset-0 z-45 flex flex-col w-full h-full bg-background/90 backdrop-blur-lg transition-transform duration-300 ease-in-out pt-20",
-          isOpen ? "translate-x-0" : "translate-x-full"
-        )}
-        aria-hidden={!isOpen}
-      >
-        <div className="flex flex-col h-full overflow-y-auto p-6">
-          <div className="flex flex-col space-y-8 mt-4">
+      {/* Simplified Mobile Navigation - Fixed position with high z-index */}
+      {isOpen && (
+        <div 
+          id="mobile-menu"
+          className="fixed inset-0 z-40 bg-background flex flex-col pt-20 px-6"
+        >
+          <div className="flex flex-col space-y-6">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="text-xl font-medium text-foreground hover:text-primary transition-colors"
+                className="text-xl font-medium text-foreground hover:text-primary"
                 onClick={closeMenu}
               >
                 {item.name}
               </a>
             ))}
             <Button 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground w-full mt-4" 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground mt-2" 
               onClick={closeMenu}
             >
               Get Started <ChevronRight className="ml-1 h-4 w-4" />
             </Button>
           </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };

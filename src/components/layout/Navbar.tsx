@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from "@/lib/utils";
@@ -6,16 +5,21 @@ import { Menu, X, ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 
+interface NavItem {
+  name: string;
+  href: string;
+}
+
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [scrolled, setScrolled] = useState<boolean>(false);
   const isMobile = useIsMobile();
 
-  const closeMenu = () => setIsOpen(false);
-  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = (): void => setIsOpen(false);
+  const toggleMenu = (): void => setIsOpen(!isOpen);
   
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
+    const handleEscape = (e: KeyboardEvent): void => {
       if (e.key === 'Escape') {
         closeMenu();
       }
@@ -26,7 +30,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
+    const handleResize = (): void => {
       if (window.innerWidth >= 768) {
         closeMenu();
       }
@@ -37,7 +41,7 @@ const Navbar: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       const offset = window.scrollY;
       setScrolled(offset > 50);
     };
@@ -58,7 +62,7 @@ const Navbar: React.FC = () => {
     };
   }, [isOpen]);
 
-  const navItems = [
+  const navItems: NavItem[] = [
     { name: 'Features', href: '#features' },
     { name: 'Product', href: '#product' },
     { name: 'Pricing', href: '#pricing' },
@@ -111,23 +115,11 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile menu with fixed position */}
+      {/* Mobile menu with fixed position and className instead of inline style */}
       {isOpen && (
         <div 
           id="mobile-menu"
-          className="fixed inset-0 z-40 bg-[#0C1B14]"
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 40,
-            backgroundColor: '#0C1B14',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
+          className="fixed inset-0 z-40 bg-[#0C1B14] flex items-center justify-center"
         >
           <div className="flex flex-col items-center justify-center space-y-8 w-full px-6">
             {navItems.map((item) => (

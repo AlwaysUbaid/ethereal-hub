@@ -116,11 +116,12 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Simplified Mobile Navigation - Fixed position with high z-index */}
+      {/* Simplified Mobile Navigation with solid background */}
       {isOpen && (
         <div 
           id="mobile-menu"
           className="fixed inset-0 z-40 bg-background flex flex-col pt-20 px-6"
+          style={{ backgroundColor: '#0C1B14' }} // Solid dark background color
         >
           <div className="flex flex-col space-y-6">
             {navItems.map((item) => (

@@ -4,18 +4,21 @@ import { Link } from 'react-router-dom';
 import { cn } from "@/lib/utils";
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const isMobile = useIsMobile();
 
+  const closeMenu = () => setIsOpen(false);
   const toggleMenu = () => setIsOpen(!isOpen);
   
   // Close the menu when the escape key is pressed
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setIsOpen(false);
+        closeMenu();
       }
     };
     
@@ -27,7 +30,7 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
-        setIsOpen(false);
+        closeMenu();
       }
     };
     
@@ -98,9 +101,11 @@ const Navbar: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 rounded-md focus:outline-none z-50 relative"
+            className="md:hidden p-2 z-[100] relative transition-colors hover:text-primary"
             onClick={toggleMenu}
             aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           >
             {isOpen ? (
               <X className="h-6 w-6 text-foreground" />
@@ -114,43 +119,48 @@ const Navbar: React.FC = () => {
       {/* Mobile Navigation Overlay */}
       <div
         className={cn(
-          "fixed inset-0 bg-background/90 backdrop-blur-lg z-40 transition-opacity duration-300",
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          "fixed inset-0 bg-background/95 backdrop-blur-lg z-50 transition-all duration-300",
+          isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         )}
-        onClick={() => setIsOpen(false)}
+        onClick={closeMenu}
         aria-hidden="true"
       />
 
       {/* Mobile Navigation */}
       <div
+        id="mobile-menu"
         className={cn(
-          "md:hidden fixed inset-0 z-40 flex flex-col w-full h-full bg-background pt-20 transition-transform duration-300 ease-in-out",
+          "fixed inset-0 z-[60] flex flex-col w-full h-full bg-background transition-transform duration-300 ease-in-out pt-20",
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
+        aria-hidden={!isOpen}
       >
-        <div className="absolute top-6 right-6 z-50">
+        <div className="absolute top-4 right-4 z-[70]">
           <button
-            onClick={() => setIsOpen(false)}
+            onClick={closeMenu}
             className="p-2 rounded-md focus:outline-none text-foreground hover:text-primary transition-colors"
             aria-label="Close menu"
           >
-            <X className="h-6 w-6" />
+            <X className="h-8 w-8" />
           </button>
         </div>
         
         <div className="flex flex-col h-full overflow-y-auto p-6">
-          <div className="flex flex-col space-y-8">
+          <div className="flex flex-col space-y-8 mt-4">
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
                 className="text-xl font-medium text-foreground hover:text-primary transition-colors"
-                onClick={() => setIsOpen(false)}
+                onClick={closeMenu}
               >
                 {item.name}
               </a>
             ))}
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground w-full mt-4" onClick={() => setIsOpen(false)}>
+            <Button 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground w-full mt-4" 
+              onClick={closeMenu}
+            >
               Get Started <ChevronRight className="ml-1 h-4 w-4" />
             </Button>
           </div>

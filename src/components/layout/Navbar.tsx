@@ -51,13 +51,13 @@ const Navbar: React.FC = () => {
   // Prevent scrolling when mobile menu is open
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add('overflow-hidden');
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.classList.remove('overflow-hidden');
+      document.body.style.overflow = '';
     }
     
     return () => {
-      document.body.classList.remove('overflow-hidden');
+      document.body.style.overflow = '';
     };
   }, [isOpen]);
 
@@ -119,7 +119,7 @@ const Navbar: React.FC = () => {
       {/* Mobile Navigation Overlay */}
       <div
         className={cn(
-          "fixed inset-0 bg-background/95 backdrop-blur-lg z-50 transition-all duration-300",
+          "fixed inset-0 bg-background/95 backdrop-blur-lg z-40 transition-all duration-300",
           isOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         )}
       />
@@ -128,13 +128,11 @@ const Navbar: React.FC = () => {
       <div
         id="mobile-menu"
         className={cn(
-          "fixed inset-0 z-[60] flex flex-col w-full h-full bg-background transition-transform duration-300 ease-in-out pt-20",
+          "fixed inset-0 z-45 flex flex-col w-full h-full bg-background/90 backdrop-blur-lg transition-transform duration-300 ease-in-out pt-20",
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
         aria-hidden={!isOpen}
       >
-        {/* Removed the duplicate close button here */}
-        
         <div className="flex flex-col h-full overflow-y-auto p-6">
           <div className="flex flex-col space-y-8 mt-4">
             {navItems.map((item) => (

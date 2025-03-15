@@ -1,7 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from "@/lib/utils";
-import { Menu, X, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -94,48 +95,79 @@ const Navbar = () => {
             </Button>
           </div>
 
+          {/* New Hamburger Menu Button */}
           <button
-            className="md:hidden p-2 z-50 relative text-foreground hover:text-primary"
+            className="md:hidden relative z-50 w-10 h-10 flex items-center justify-center"
             onClick={toggleMenu}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
           >
-            {isOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
+            <div className="flex flex-col justify-center items-center w-8 h-8">
+              <span 
+                className={cn(
+                  "block w-6 h-0.5 bg-foreground rounded-full transition-all duration-300 ease-out",
+                  isOpen ? "transform rotate-45 translate-y-1.5" : "mb-1.5"
+                )}
+              />
+              <span 
+                className={cn(
+                  "block w-6 h-0.5 bg-foreground rounded-full transition-all duration-300 ease-out",
+                  isOpen ? "opacity-0 -translate-x-4" : "mb-1.5"
+                )}
+              />
+              <span 
+                className={cn(
+                  "block w-6 h-0.5 bg-foreground rounded-full transition-all duration-300 ease-out",
+                  isOpen ? "transform -rotate-45 -translate-y-1.5" : ""
+                )}
+              />
+            </div>
           </button>
         </div>
       </div>
 
-      {/* Mobile menu with fixed position and className instead of inline style */}
-      {isOpen && (
-        <div 
-          id="mobile-menu"
-          className="fixed inset-0 z-40 bg-[#0C1B14] flex items-center justify-center"
-        >
-          <div className="flex flex-col items-center justify-center space-y-8 w-full px-6">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-2xl font-medium text-center text-foreground hover:text-primary transition-colors"
-                onClick={closeMenu}
-              >
-                {item.name}
-              </a>
-            ))}
-            <Button 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground mt-4 w-full max-w-xs" 
+      {/* New Mobile Menu Animation */}
+      <div 
+        className={cn(
+          "fixed inset-0 z-40 bg-background transform transition-all duration-500 ease-in-out",
+          isOpen 
+            ? "translate-x-0 opacity-100" 
+            : "translate-x-full opacity-0 pointer-events-none"
+        )}
+      >
+        <div className="flex flex-col items-center justify-center h-full w-full px-6 space-y-8">
+          {navItems.map((item, index) => (
+            <a
+              key={item.name}
+              href={item.href}
+              className={cn(
+                "text-2xl font-medium text-center text-foreground transition-all duration-500 ease-in-out",
+                isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
+                "hover:text-primary hover:scale-110 transition-all"
+              )}
               onClick={closeMenu}
+              style={{ 
+                transitionDelay: isOpen ? `${index * 100}ms` : '0ms'
+              }}
             >
-              Get Started <ChevronRight className="ml-1 h-4 w-4" />
-            </Button>
-          </div>
+              {item.name}
+            </a>
+          ))}
+          <Button 
+            className={cn(
+              "bg-primary hover:bg-primary/90 text-primary-foreground mt-4 w-full max-w-xs transition-all duration-500",
+              isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+            )}
+            onClick={closeMenu}
+            style={{ 
+              transitionDelay: isOpen ? `${navItems.length * 100}ms` : '0ms'
+            }}
+          >
+            Get Started <ChevronRight className="ml-1 h-4 w-4" />
+          </Button>
         </div>
-      )}
+      </div>
     </nav>
   );
 };

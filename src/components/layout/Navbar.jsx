@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ChevronRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { GlassCard } from "@/components/ui/GlassCard";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -95,30 +96,30 @@ const Navbar = () => {
             </Button>
           </div>
 
-          {/* New Hamburger Menu Button */}
+          {/* New Hamburger Menu Button with Better Visibility */}
           <button
-            className="md:hidden relative z-50 w-10 h-10 flex items-center justify-center"
+            className="md:hidden z-50 w-12 h-12 flex items-center justify-center bg-primary/10 backdrop-blur-sm rounded-full"
             onClick={toggleMenu}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
             aria-controls="mobile-menu"
           >
-            <div className="flex flex-col justify-center items-center w-8 h-8">
+            <div className="flex flex-col justify-center items-center w-6 h-6">
               <span 
                 className={cn(
-                  "block w-6 h-0.5 bg-foreground rounded-full transition-all duration-300 ease-out",
+                  "block w-6 h-0.5 bg-primary rounded-full transition-all duration-300 ease-out",
                   isOpen ? "transform rotate-45 translate-y-1.5" : "mb-1.5"
                 )}
               />
               <span 
                 className={cn(
-                  "block w-6 h-0.5 bg-foreground rounded-full transition-all duration-300 ease-out",
+                  "block w-6 h-0.5 bg-primary rounded-full transition-all duration-300 ease-out",
                   isOpen ? "opacity-0 -translate-x-4" : "mb-1.5"
                 )}
               />
               <span 
                 className={cn(
-                  "block w-6 h-0.5 bg-foreground rounded-full transition-all duration-300 ease-out",
+                  "block w-6 h-0.5 bg-primary rounded-full transition-all duration-300 ease-out",
                   isOpen ? "transform -rotate-45 -translate-y-1.5" : ""
                 )}
               />
@@ -127,45 +128,51 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* New Mobile Menu Animation */}
+      {/* Glassy Mobile Menu Animation */}
       <div 
         className={cn(
-          "fixed inset-0 z-40 bg-background transform transition-all duration-500 ease-in-out",
+          "fixed inset-0 z-40 transform transition-all duration-500 ease-in-out backdrop-blur-xl",
           isOpen 
             ? "translate-x-0 opacity-100" 
             : "translate-x-full opacity-0 pointer-events-none"
         )}
       >
-        <div className="flex flex-col items-center justify-center h-full w-full px-6 space-y-8">
-          {navItems.map((item, index) => (
-            <a
-              key={item.name}
-              href={item.href}
-              className={cn(
-                "text-2xl font-medium text-center text-foreground transition-all duration-500 ease-in-out",
-                isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
-                "hover:text-primary hover:scale-110 transition-all"
-              )}
-              onClick={closeMenu}
-              style={{ 
-                transitionDelay: isOpen ? `${index * 100}ms` : '0ms'
-              }}
-            >
-              {item.name}
-            </a>
-          ))}
-          <Button 
-            className={cn(
-              "bg-primary hover:bg-primary/90 text-primary-foreground mt-4 w-full max-w-xs transition-all duration-500",
-              isOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-            )}
-            onClick={closeMenu}
-            style={{ 
-              transitionDelay: isOpen ? `${navItems.length * 100}ms` : '0ms'
-            }}
-          >
-            Get Started <ChevronRight className="ml-1 h-4 w-4" />
-          </Button>
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-xl"></div>
+        
+        <div className="relative h-full flex flex-col items-center justify-center">
+          <div className="w-full max-w-md mx-auto px-6">
+            <GlassCard className="p-10 w-full h-auto flex flex-col items-center justify-center space-y-8">
+              {navItems.map((item, index) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    "text-2xl font-medium text-center text-foreground transition-all duration-500 ease-in-out",
+                    isOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0",
+                    "hover:text-primary hover:scale-110 transition-all"
+                  )}
+                  onClick={closeMenu}
+                  style={{ 
+                    transitionDelay: isOpen ? `${index * 120}ms` : '0ms'
+                  }}
+                >
+                  {item.name}
+                </a>
+              ))}
+              <Button 
+                className={cn(
+                  "bg-primary hover:bg-primary/90 text-primary-foreground mt-6 w-full transition-all duration-500",
+                  isOpen ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                )}
+                onClick={closeMenu}
+                style={{ 
+                  transitionDelay: isOpen ? `${navItems.length * 120}ms` : '0ms'
+                }}
+              >
+                Get Started <ChevronRight className="ml-1 h-4 w-4" />
+              </Button>
+            </GlassCard>
+          </div>
         </div>
       </div>
     </nav>

@@ -92,25 +92,43 @@ const Navbar: React.FC = () => {
             </Button>
           </div>
         </div>
-        
-        {/* Mobile navigation overlay */}
-        {mobileMenuOpen && (
-          <div className="fixed inset-0 top-[72px] bg-background/95 backdrop-blur-lg z-40 md:hidden">
-            <div className="flex flex-col items-center justify-center space-y-8 py-8 px-4 h-full">
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-xl font-medium text-foreground hover:text-primary transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Mobile navigation overlay - Updated with proper background */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 top-0 bg-background z-40 md:hidden flex flex-col">
+          {/* Header for mobile menu */}
+          <div className={cn(
+            "py-4 px-4 flex items-center justify-between",
+            scrolled ? "bg-background/80 backdrop-blur-lg border-b border-border/50" : "bg-background"
+          )}>
+            <Link to="/" className="flex items-center">
+              <span className="text-2xl font-bold text-primary">Elysium</span>
+            </Link>
+            <Button 
+              variant="ghost" 
+              size="icon"
+              onClick={toggleMobileMenu}
+            >
+              <X className="h-6 w-6 text-foreground" />
+            </Button>
+          </div>
+          
+          {/* Navigation items */}
+          <div className="flex flex-col items-center justify-center space-y-8 py-12 px-4 h-full bg-background">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-xl font-medium text-foreground hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

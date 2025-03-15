@@ -72,6 +72,11 @@ const Navbar: React.FC = () => {
                   {item.name}
                 </a>
               ))}
+              
+              {/* Get Started button moved to desktop nav menu */}
+              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                Get Started <ChevronRight className="ml-1 h-4 w-4" />
+              </Button>
             </div>
             
             {/* Mobile menu button */}
@@ -85,10 +90,6 @@ const Navbar: React.FC = () => {
                 <X className="h-6 w-6 text-foreground" /> : 
                 <Menu className="h-6 w-6 text-foreground" />
               }
-            </Button>
-            
-            <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-              Get Started <ChevronRight className="ml-1 h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -111,7 +112,13 @@ const Navbar: React.FC = () => {
                 </a>
               ))}
               
-              {/* Removed the redundant "Get Started" button */}
+              {/* Get Started button added below Contact in mobile menu */}
+              <Button 
+                className="bg-primary hover:bg-primary/90 text-primary-foreground mt-4"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Get Started <ChevronRight className="ml-1 h-4 w-4" />
+              </Button>
             </div>
           </div>
         </div>

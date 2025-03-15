@@ -5,15 +5,30 @@ import AnimatedText from '../ui/AnimatedText';
 import GlassCard from '../ui/GlassCard';
 import { TrendingUp, Clock, Users, BarChart3 } from 'lucide-react';
 
-const StatsSection = () => {
-  const [counters, setCounters] = useState({
+interface StatsCounter {
+  volume: number;
+  trades: number;
+  users: number;
+  uptime: number;
+}
+
+interface StatData {
+  icon: React.ReactNode;
+  value: string;
+  label: string;
+  suffix: string;
+  description: string;
+}
+
+const StatsSection: React.FC = () => {
+  const [counters, setCounters] = useState<StatsCounter>({
     volume: 0,
     trades: 0,
     users: 0,
     uptime: 0
   });
   
-  const statsData = [
+  const statsData: StatData[] = [
     {
       icon: <TrendingUp className="h-10 w-10 text-primary" />,
       value: "$4.7B+",

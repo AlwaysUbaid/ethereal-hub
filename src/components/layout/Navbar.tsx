@@ -94,38 +94,41 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile navigation overlay - Updated with proper background */}
+      {/* Mobile menu - completely redesigned */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-0 bg-background z-40 md:hidden flex flex-col">
-          {/* Header for mobile menu */}
-          <div className={cn(
-            "py-4 px-4 flex items-center justify-between",
-            scrolled ? "bg-background/80 backdrop-blur-lg border-b border-border/50" : "bg-background"
-          )}>
-            <Link to="/" className="flex items-center">
-              <span className="text-2xl font-bold text-primary">Elysium</span>
-            </Link>
-            <Button 
-              variant="ghost" 
-              size="icon"
-              onClick={toggleMobileMenu}
-            >
-              <X className="h-6 w-6 text-foreground" />
-            </Button>
-          </div>
-          
-          {/* Navigation items */}
-          <div className="flex flex-col items-center justify-center space-y-8 py-12 px-4 h-full bg-background">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-xl font-medium text-foreground hover:text-primary transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+        <div className="mobile-menu-backdrop md:hidden">
+          <div className="mobile-menu-content">
+            {/* Mobile menu header */}
+            <div className="px-4 py-3 border-b border-border/20 flex items-center justify-between">
+              <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
+                <span className="text-2xl font-bold text-primary">Elysium</span>
+              </Link>
+              <Button 
+                variant="ghost" 
+                size="icon"
+                onClick={toggleMobileMenu}
               >
-                {item.name}
-              </a>
-            ))}
+                <X className="h-6 w-6 text-foreground" />
+              </Button>
+            </div>
+            
+            {/* Mobile menu items */}
+            <div className="flex-1 flex flex-col items-center justify-center space-y-8 py-12">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-xl font-medium text-foreground hover:text-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              ))}
+              
+              <Button className="mt-6 bg-primary hover:bg-primary/90 text-primary-foreground">
+                Get Started <ChevronRight className="ml-1 h-4 w-4" />
+              </Button>
+            </div>
           </div>
         </div>
       )}

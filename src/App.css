@@ -64,7 +64,7 @@
   }
 }
 
-/* Add these styles to ensure proper mobile menu rendering */
+/* Enhanced mobile menu styles */
 .mobile-menu-backdrop {
   position: fixed;
   top: 0;
@@ -74,6 +74,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(8px);
   z-index: 40;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .mobile-menu-content {
@@ -86,4 +87,25 @@
   display: flex;
   flex-direction: column;
   background-color: var(--background);
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-5%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

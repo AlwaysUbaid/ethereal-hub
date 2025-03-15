@@ -98,7 +98,7 @@ const Hero: React.FC = () => {
             animationDelay: '1.5s',
             animationFillMode: 'forwards'
           }}>
-              <GlassCard className="flex flex-col sm:flex-row items-center justify-between p-4 max-w-md gap-3 sm:gap-0">
+              <GlassCard className="flex flex-col sm:flex-row items-center justify-between p-4 max-w-md gap-3 sm:gap-0c">
                 <div className="flex items-center space-x-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
                   <span className="text-sm text-foreground/80">Hyperliquid Mainnet Available

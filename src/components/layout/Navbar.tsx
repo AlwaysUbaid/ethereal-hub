@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from "@/lib/utils";
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Menu, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -13,6 +13,7 @@ interface NavItem {
 
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const isMobile = useIsMobile();
 
   useEffect(() => {
@@ -25,12 +26,25 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    // Disable body scroll when mobile menu is open
+    if (mobileMenuOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  }, [mobileMenuOpen]);
+
   const navItems: NavItem[] = [
     { name: 'Features', href: '#features' },
     { name: 'Product', href: '#product' },
     { name: 'Pricing', href: '#pricing' },
     { name: 'Contact', href: '#contact' },
   ];
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
 
   return (
     <nav
@@ -45,23 +59,57 @@ const Navbar: React.FC = () => {
             <span className="text-2xl font-bold text-primary">Elysium</span>
           </Link>
 
-          <div className="flex items-center space-x-8">
+          <div className="flex items-center space-x-4">
+            {/* Desktop navigation */}
             <div className="hidden md:flex items-center space-x-6">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
                   className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
                 </a>
               ))}
             </div>
+            
+            {/* Mobile menu button */}
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="md:hidden"
+              onClick={toggleMobileMenu}
+            >
+              {mobileMenuOpen ? 
+                <X className="h-6 w-6 text-foreground" /> : 
+                <Menu className="h-6 w-6 text-foreground" />
+              }
+            </Button>
+            
             <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
               Get Started <ChevronRight className="ml-1 h-4 w-4" />
             </Button>
           </div>
         </div>
+        
+        {/* Mobile navigation overlay */}
+        {mobileMenuOpen && (
+          <div className="fixed inset-0 top-[72px] bg-background/95 backdrop-blur-lg z-40 md:hidden">
+            <div className="flex flex-col items-center justify-center space-y-8 py-8 px-4 h-full">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-xl font-medium text-foreground hover:text-primary transition-colors"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

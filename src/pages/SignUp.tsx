@@ -166,7 +166,7 @@ const SignUp = () => {
         </div>
       </div>
       <div className="hidden lg:block relative w-0 flex-1">
-        <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-accent/30 to-primary/30">
+        <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-accent/20 to-primary/20 bg-black">
           <div className="absolute inset-0 bg-background/5 backdrop-blur-[0px]"></div>
           <div className="flex h-full items-center justify-center p-12">
             <div className="max-w-2xl text-left">

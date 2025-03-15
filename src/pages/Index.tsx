@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Hero from '@/components/sections/Hero';
 import Features from '@/components/sections/Features';
+import StatsSection from '@/components/sections/StatsSection';
 import Testimonials from '@/components/sections/Testimonials';
 import ProductDetails from '@/components/sections/ProductDetails';
 import CallToAction from '@/components/sections/CallToAction';
@@ -44,6 +45,7 @@ const Index: React.FC = () => {
         <main className="w-full">
           <Hero />
           <Features />
+          <StatsSection />
           <Testimonials />
           <ProductDetails />
           <CallToAction />

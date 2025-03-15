@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -228,14 +229,28 @@ const SignUp = () => {
         </div>
       </div>
       <div className="hidden lg:block relative w-0 flex-1">
-        <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-accent/20 to-primary/20">
-          <div className="absolute inset-0 bg-background/10 backdrop-blur-sm"></div>
+        <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-accent/30 to-primary/30">
+          <div className="absolute inset-0 bg-background/5 backdrop-blur-[2px]"></div>
           <div className="flex h-full items-center justify-center p-12">
-            <div className="max-w-2xl">
+            <div className="max-w-2xl text-left">
               <h2 className="text-4xl font-bold text-foreground">Join Elysium</h2>
-              <p className="mt-4 text-xl text-foreground/80">
+              <p className="mt-4 text-xl text-foreground font-medium">
                 Get access to professional trading tools for executing complex strategies on Hyperliquid exchange.
               </p>
+              <ul className="mt-6 space-y-2 text-foreground/90">
+                <li className="flex items-center">
+                  <span className="mr-2 text-primary">•</span>
+                  Powerful trading algorithms
+                </li>
+                <li className="flex items-center">
+                  <span className="mr-2 text-primary">•</span>
+                  Customizable trading bots
+                </li>
+                <li className="flex items-center">
+                  <span className="mr-2 text-primary">•</span>
+                  Risk management tools
+                </li>
+              </ul>
             </div>
           </div>
         </div>

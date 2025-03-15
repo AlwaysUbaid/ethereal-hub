@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -32,7 +31,7 @@ const SignUp = () => {
         title: "Account created",
         description: "Welcome to Elysium!",
       });
-      navigate('/');
+      navigate('/dashboard');
     }, 1500);
   };
 
@@ -59,7 +58,7 @@ const SignUp = () => {
           title: "Account created",
           description: "Welcome to Elysium!",
         });
-        navigate('/');
+        navigate('/dashboard');
       }, 1500);
     }
   };
@@ -74,7 +73,7 @@ const SignUp = () => {
         title: "Account created",
         description: `Signed up with ${provider}`,
       });
-      navigate('/');
+      navigate('/dashboard');
     }, 1500);
   };
 
@@ -230,7 +229,7 @@ const SignUp = () => {
       </div>
       <div className="hidden lg:block relative w-0 flex-1">
         <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-accent/20 to-primary/20">
-          <div className="absolute inset-0 bg-background/30 backdrop-blur-sm"></div>
+          <div className="absolute inset-0 bg-background/10 backdrop-blur-sm"></div>
           <div className="flex h-full items-center justify-center p-12">
             <div className="max-w-2xl">
               <h2 className="text-4xl font-bold text-foreground">Join Elysium</h2>

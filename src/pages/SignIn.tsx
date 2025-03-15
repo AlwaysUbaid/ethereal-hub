@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,7 +7,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FcGoogle } from 'react-icons/fc';
 import { FaApple } from 'react-icons/fa';
 import { MdEmail, MdPhone } from 'react-icons/md';
-import { useNavigate } from 'react-router-dom';
 import { useToast } from "@/hooks/use-toast";
 
 const SignIn = () => {
@@ -25,15 +23,27 @@ const SignIn = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate authentication process
-    setTimeout(() => {
-      setIsSubmitting(false);
-      toast({
-        title: "Sign in successful",
-        description: "Welcome back to Elysium!",
-      });
-      navigate('/');
-    }, 1500);
+    // Check for dummy admin account
+    if (email === 'admin' && password === 'admin') {
+      setTimeout(() => {
+        setIsSubmitting(false);
+        toast({
+          title: "Admin sign in successful",
+          description: "Welcome to the Elysium admin dashboard!",
+        });
+        navigate('/dashboard');
+      }, 1000);
+    } else {
+      // Regular authentication process
+      setTimeout(() => {
+        setIsSubmitting(false);
+        toast({
+          title: "Sign in successful",
+          description: "Welcome back to Elysium!",
+        });
+        navigate('/dashboard');
+      }, 1500);
+    }
   };
 
   const handlePhoneSignIn = (e: React.FormEvent) => {
@@ -59,7 +69,7 @@ const SignIn = () => {
           title: "Sign in successful",
           description: "Welcome back to Elysium!",
         });
-        navigate('/');
+        navigate('/dashboard');
       }, 1500);
     }
   };
@@ -74,7 +84,7 @@ const SignIn = () => {
         title: "Sign in successful",
         description: `Signed in with ${provider}`,
       });
-      navigate('/');
+      navigate('/dashboard');
     }, 1500);
   };
 
@@ -144,7 +154,7 @@ const SignIn = () => {
                     <Label htmlFor="email">Email</Label>
                     <Input
                       id="email"
-                      type="email"
+                      type="text"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
@@ -232,7 +242,7 @@ const SignIn = () => {
       </div>
       <div className="hidden lg:block relative w-0 flex-1">
         <div className="absolute inset-0 h-full w-full bg-gradient-to-br from-primary/20 to-accent/20">
-          <div className="absolute inset-0 bg-background/30 backdrop-blur-sm"></div>
+          <div className="absolute inset-0 bg-background/10 backdrop-blur-sm"></div>
           <div className="flex h-full items-center justify-center p-12">
             <div className="max-w-2xl">
               <h2 className="text-4xl font-bold text-foreground">Elysium Terminal</h2>

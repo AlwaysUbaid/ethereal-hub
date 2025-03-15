@@ -5,9 +5,11 @@ import GlassCard from '../ui/GlassCard';
 import { ChevronRight, ExternalLink } from 'lucide-react';
 import TerminalDemo from '../ui/TerminalDemo';
 import { useIsMobile } from "@/hooks/use-mobile";
+
 const Hero: React.FC = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!terminalRef.current || isMobile) return;
@@ -28,7 +30,6 @@ const Hero: React.FC = () => {
     };
   }, [isMobile]);
 
-  // Terminal content with proper JSX syntax for the '>' character
   const terminalContent = <>
       <div className="text-primary">{`> connect mainnet`}</div>
       <div className="text-green-400 mb-2">Successfully connected to Hyperliquid</div>
@@ -64,8 +65,8 @@ const Hero: React.FC = () => {
       
       <div className="text-primary mt-1">{`> `}<span className="animate-pulse">_</span></div>
     </>;
+
   return <section className="min-h-screen pt-24 pb-20 flex items-center relative overflow-hidden" id="home">
-      {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-30 overflow-hidden pointer-events-none">
         <div className="absolute -top-1/4 -right-1/4 w-3/4 h-3/4 rounded-full bg-primary/5 blur-3xl"></div>
         <div className="absolute -bottom-1/4 -left-1/4 w-3/4 h-3/4 rounded-full bg-accent/5 blur-3xl"></div>
@@ -106,7 +107,7 @@ const Hero: React.FC = () => {
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm text-foreground/80">Testnet Available</span>
+                  <span className="text-sm text-foreground/80">Hyperliquid Testnet Available</span>
                 </div>
               </GlassCard>
             </div>
@@ -124,4 +125,5 @@ const Hero: React.FC = () => {
       </div>
     </section>;
 };
+
 export default Hero;

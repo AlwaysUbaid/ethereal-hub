@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import AnimatedText from '../ui/AnimatedText';
@@ -6,11 +5,9 @@ import GlassCard from '../ui/GlassCard';
 import { ChevronRight, ExternalLink } from 'lucide-react';
 import TerminalDemo from '../ui/TerminalDemo';
 import { useIsMobile } from "@/hooks/use-mobile";
-
 const Hero: React.FC = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
-  
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!terminalRef.current || isMobile) return;
@@ -25,7 +22,6 @@ const Hero: React.FC = () => {
       const moveY = (clientY - centerY) / 40;
       terminalRef.current.style.transform = `translate(${moveX}px, ${moveY}px)`;
     };
-    
     document.addEventListener('mousemove', handleMouseMove);
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
@@ -33,8 +29,7 @@ const Hero: React.FC = () => {
   }, [isMobile]);
 
   // Terminal content with proper JSX syntax for the '>' character
-  const terminalContent = (
-    <>
+  const terminalContent = <>
       <div className="text-primary">{`> connect mainnet`}</div>
       <div className="text-green-400 mb-2">Successfully connected to Hyperliquid</div>
       
@@ -68,11 +63,8 @@ const Hero: React.FC = () => {
       <div className="text-foreground/80 mb-1 text-xs sm:text-sm">5/5 | 0.10000000 | 3300.00000000</div>
       
       <div className="text-primary mt-1">{`> `}<span className="animate-pulse">_</span></div>
-    </>
-  );
-
-  return (
-    <section className="min-h-screen pt-24 pb-20 flex items-center relative overflow-hidden" id="home">
+    </>;
+  return <section className="min-h-screen pt-24 pb-20 flex items-center relative overflow-hidden" id="home">
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-30 overflow-hidden pointer-events-none">
         <div className="absolute -top-1/4 -right-1/4 w-3/4 h-3/4 rounded-full bg-primary/5 blur-3xl"></div>
@@ -91,9 +83,9 @@ const Hero: React.FC = () => {
             <AnimatedText text="Elysium provides professional traders with advanced terminal-based tools for executing complex strategies on Hyperliquid exchange." className="text-foreground/70 text-base sm:text-lg max-w-xl" delay={900} tag="p" />
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4 opacity-0 animate-fade-in" style={{
-              animationDelay: '1.2s',
-              animationFillMode: 'forwards'
-            }}>
+            animationDelay: '1.2s',
+            animationFillMode: 'forwards'
+          }}>
               <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                 Get Started <ChevronRight className="ml-1 h-4 w-4" />
               </Button>
@@ -103,13 +95,14 @@ const Hero: React.FC = () => {
             </div>
             
             <div className="pt-4 md:pt-8 opacity-0 animate-fade-in" style={{
-              animationDelay: '1.5s',
-              animationFillMode: 'forwards'
-            }}>
+            animationDelay: '1.5s',
+            animationFillMode: 'forwards'
+          }}>
               <GlassCard className="flex flex-col sm:flex-row items-center justify-between p-4 max-w-md gap-3 sm:gap-0">
                 <div className="flex items-center space-x-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm text-foreground/80">Hyperliquid Mainnet</span>
+                  <span className="text-sm text-foreground/80">Hyperliquid Mainnet Available
+                </span>
                 </div>
                 <div className="flex items-center space-x-3">
                   <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
@@ -121,16 +114,14 @@ const Hero: React.FC = () => {
           
           <div className="perspective relative block mt-8 lg:mt-0">
             <div ref={terminalRef} className="w-full transition-transform duration-300 ease-out preserve-3d opacity-0 animate-fade-in" style={{
-              animationDelay: '0.3s',
-              animationFillMode: 'forwards'
-            }}>
+            animationDelay: '0.3s',
+            animationFillMode: 'forwards'
+          }}>
               <TerminalDemo content={terminalContent} />
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Hero;

@@ -73,10 +73,12 @@ const Navbar: React.FC = () => {
                 </a>
               ))}
               
-              {/* Get Started button moved to desktop nav menu */}
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                Get Started <ChevronRight className="ml-1 h-4 w-4" />
-              </Button>
+              {/* Get Started button moved to desktop nav menu and linked to sign-in */}
+              <Link to="/sign-in">
+                <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                  Get Started <ChevronRight className="ml-1 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
             
             {/* Mobile menu button */}
@@ -95,11 +97,11 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile menu - fixed duplicate elements and removed redundant button */}
+      {/* Mobile menu */}
       {mobileMenuOpen && (
         <div className="mobile-menu-backdrop md:hidden">
           <div className="mobile-menu-content">
-            {/* Mobile menu items - removed duplicate header */}
+            {/* Mobile menu items */}
             <div className="flex-1 flex flex-col items-center justify-center space-y-8 py-12">
               {navItems.map((item) => (
                 <a
@@ -112,13 +114,14 @@ const Navbar: React.FC = () => {
                 </a>
               ))}
               
-              {/* Get Started button added below Contact in mobile menu */}
-              <Button 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground mt-4"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Get Started <ChevronRight className="ml-1 h-4 w-4" />
-              </Button>
+              {/* Get Started button added below Contact in mobile menu and linked to sign-in */}
+              <Link to="/sign-in" onClick={() => setMobileMenuOpen(false)}>
+                <Button 
+                  className="bg-primary hover:bg-primary/90 text-primary-foreground mt-4"
+                >
+                  Get Started <ChevronRight className="ml-1 h-4 w-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

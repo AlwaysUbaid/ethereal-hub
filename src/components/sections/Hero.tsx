@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef } from 'react';
 import { Button } from "@/components/ui/button";
 import AnimatedText from '../ui/AnimatedText';
@@ -5,6 +6,7 @@ import GlassCard from '../ui/GlassCard';
 import { ChevronRight, ExternalLink } from 'lucide-react';
 import TerminalDemo from '../ui/TerminalDemo';
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Link } from 'react-router-dom';
 
 const Hero: React.FC = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
@@ -87,9 +89,11 @@ const Hero: React.FC = () => {
             animationDelay: '1.2s',
             animationFillMode: 'forwards'
           }}>
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                Get Started <ChevronRight className="ml-1 h-4 w-4" />
-              </Button>
+              <Link to="/sign-in">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                  Get Started <ChevronRight className="ml-1 h-4 w-4" />
+                </Button>
+              </Link>
               <Button size="lg" variant="outline" className="border-foreground/20 hover:bg-foreground/5">
                 Explore Features <ExternalLink className="ml-1 h-4 w-4" />
               </Button>

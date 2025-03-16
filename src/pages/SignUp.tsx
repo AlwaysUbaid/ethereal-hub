@@ -7,8 +7,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FcGoogle } from 'react-icons/fc';
 import { FaApple } from 'react-icons/fa';
 import { MdEmail, MdPhone } from 'react-icons/md';
+import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from "@/hooks/use-toast";
+
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,6 +22,7 @@ const SignUp = () => {
   const {
     toast
   } = useToast();
+
   const handleEmailSignUp = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -34,6 +37,7 @@ const SignUp = () => {
       navigate('/dashboard');
     }, 1500);
   };
+
   const handlePhoneSignUp = (e: React.FormEvent) => {
     e.preventDefault();
     if (!showOtpInput) {
@@ -60,6 +64,7 @@ const SignUp = () => {
       }, 1500);
     }
   };
+
   const handleSocialSignUp = (provider: string) => {
     setIsSubmitting(true);
 
@@ -73,10 +78,14 @@ const SignUp = () => {
       navigate('/dashboard');
     }, 1500);
   };
+
   return <div className="flex min-h-screen bg-background">
       <div className="flex-1 flex flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div className="mx-auto w-full max-w-sm lg:w-96">
-          <div className="mb-10">
+          <div className="mb-10 relative">
+            <Link to="/" className="absolute -left-2 -top-12 p-2 text-muted-foreground hover:text-foreground transition-colors">
+              <ArrowLeft className="h-5 w-5" />
+            </Link>
             <Link to="/" className="flex items-center">
               <span className="text-2xl font-bold text-primary">Elysium</span>
             </Link>
@@ -194,4 +203,5 @@ const SignUp = () => {
       </div>
     </div>;
 };
+
 export default SignUp;

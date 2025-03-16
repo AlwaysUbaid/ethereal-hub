@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ArrowLeft } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 
 const ForgotPassword = () => {
@@ -30,7 +31,10 @@ const ForgotPassword = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4 py-12 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
-        <div>
+        <div className="relative">
+          <Link to="/sign-in" className="absolute -left-2 -top-12 p-2 text-muted-foreground hover:text-foreground transition-colors">
+            <ArrowLeft className="h-5 w-5" />
+          </Link>
           <Link to="/" className="flex items-center justify-center">
             <span className="text-2xl font-bold text-primary">Elysium</span>
           </Link>

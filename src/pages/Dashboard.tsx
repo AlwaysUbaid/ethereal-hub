@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
@@ -11,15 +10,16 @@ import {
 import { Button } from "@/components/ui/button";
 import { 
   ArrowDown, ArrowUp, BarChart3, ChevronDown, CreditCard, DollarSign, 
-  Globe, History, Menu, Settings, UserCircle, X, BellIcon, Search
+  Globe, History, Menu, Settings, UserCircle, X, Search
 } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import NotificationCenter from "@/components/dashboard/NotificationCenter";
+import ProfileDropdown from "@/components/dashboard/ProfileDropdown";
 
 // Sample data for charts
 const portfolioData = [
@@ -199,19 +199,8 @@ const Dashboard: React.FC = () => {
                 />
               </div>
             )}
-            <Button variant="outline" size="icon">
-              <BellIcon className="h-5 w-5" />
-            </Button>
-            <div className="flex items-center">
-              <Avatar>
-                <AvatarImage src="/placeholder.svg" />
-                <AvatarFallback>AD</AvatarFallback>
-              </Avatar>
-              <div className="hidden md:block ml-2">
-                <p className="text-sm font-medium">Admin User</p>
-                <p className="text-xs text-muted-foreground">admin@elysium.com</p>
-              </div>
-            </div>
+            <NotificationCenter />
+            <ProfileDropdown />
           </div>
         </header>
 

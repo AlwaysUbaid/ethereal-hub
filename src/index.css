@@ -35,6 +35,37 @@
 
     --radius: 0.5rem;
   }
+
+  /* Light mode styles */
+  :root.light-mode {
+    --background: 0 0% 96%;
+    --foreground: 155 10% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 155 10% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 155 10% 12%;
+
+    --primary: 155 70% 40%;
+    --primary-foreground: 155 10% 98%;
+
+    --secondary: 155 10% 92%;
+    --secondary-foreground: 155 10% 12%;
+
+    --accent: 143 70% 45%;
+    --accent-foreground: 155 10% 98%;
+
+    --muted: 155 10% 92%;
+    --muted-foreground: 155 10% 40%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 155 15% 85%;
+    --input: 155 15% 85%;
+    --ring: 155 80% 40%;
+  }
 }
 
 @layer base {
@@ -101,6 +132,11 @@
   .spiral-container {
     position: relative;
     overflow: hidden;
+  }
+
+  /* Theme transition */
+  .theme-transition {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   }
 }
 

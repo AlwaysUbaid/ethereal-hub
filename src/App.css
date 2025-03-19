@@ -51,8 +51,18 @@
 /* Mobile responsive styles */
 @media (max-width: 640px) {
   .container {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  /* Chart adaptations for mobile */
+  .recharts-wrapper .recharts-cartesian-grid-horizontal line,
+  .recharts-wrapper .recharts-cartesian-grid-vertical line {
+    stroke: rgba(255, 255, 255, 0.1);
+  }
+
+  .recharts-tooltip-wrapper {
+    font-size: 0.75rem;
   }
   
   /* Fixed mobile menu styles */
@@ -107,5 +117,21 @@
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+/* Dashboard specific mobile adjustments */
+@media (max-width: 640px) {
+  .dashboard-card {
+    padding: 1rem;
+  }
+  
+  .dashboard-stat-value {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  .dashboard-chart-container {
+    height: 200px;
   }
 }

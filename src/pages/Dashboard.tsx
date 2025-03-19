@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
@@ -18,6 +18,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 
 // Sample data for charts
 const portfolioData = [
@@ -63,79 +65,149 @@ const marketData = [
 const Dashboard: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const { toast } = useToast();
+  const { isMobile, isSmallMobile } = useIsMobile();
+  const [sidebarDrawerOpen, setSidebarDrawerOpen] = useState(false);
+
+  // Auto-close sidebar on mobile
+  useEffect(() => {
+    if (isMobile) {
+      setIsSidebarOpen(false);
+    } else {
+      setIsSidebarOpen(true);
+    }
+  }, [isMobile]);
 
   const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
+    if (isMobile) {
+      setSidebarDrawerOpen(!sidebarDrawerOpen);
+    } else {
+      setIsSidebarOpen(!isSidebarOpen);
+    }
   };
 
-  return (
-    <div className="flex h-screen bg-background overflow-hidden">
-      {/* Sidebar */}
-      <div className={`bg-card border-r border-border transition-all duration-300 ${isSidebarOpen ? 'w-64' : 'w-20'}`}>
-        <div className="flex items-center justify-between h-16 px-4 border-b border-border">
-          <Link to="/" className={`flex items-center ${!isSidebarOpen && 'justify-center'}`}>
-            <span className={`text-xl font-bold text-primary ${!isSidebarOpen ? 'hidden' : 'block'}`}>Elysium</span>
-            <span className={`text-xl font-bold text-primary ${isSidebarOpen ? 'hidden' : 'block'}`}>E</span>
+  const MobileSidebar = () => (
+    <Drawer open={sidebarDrawerOpen} onOpenChange={setSidebarDrawerOpen}>
+      <DrawerContent className="h-[85vh] bg-card border-t border-border pt-2">
+        <div className="flex items-center justify-between px-4 py-2 border-b border-border">
+          <Link to="/" className="flex items-center">
+            <span className="text-xl font-bold text-primary">Elysium</span>
           </Link>
-          <Button variant="ghost" size="icon" onClick={toggleSidebar}>
-            {isSidebarOpen ? <ChevronDown className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          <Button variant="ghost" size="icon" onClick={() => setSidebarDrawerOpen(false)}>
+            <X className="h-4 w-4" />
           </Button>
         </div>
         <div className="p-4">
           <nav className="space-y-2">
             <Link to="/dashboard" className="flex items-center p-2 rounded-md bg-primary/10 text-primary font-medium">
-              <BarChart3 className={`h-5 w-5 ${!isSidebarOpen && 'mx-auto'}`} />
-              <span className={`ml-3 ${!isSidebarOpen && 'hidden'}`}>Dashboard</span>
+              <BarChart3 className="h-5 w-5 mr-3" />
+              <span>Dashboard</span>
             </Link>
             <Link to="#" className="flex items-center p-2 rounded-md hover:bg-muted text-foreground/80 font-medium">
-              <Globe className={`h-5 w-5 ${!isSidebarOpen && 'mx-auto'}`} />
-              <span className={`ml-3 ${!isSidebarOpen && 'hidden'}`}>Markets</span>
+              <Globe className="h-5 w-5 mr-3" />
+              <span>Markets</span>
             </Link>
             <Link to="#" className="flex items-center p-2 rounded-md hover:bg-muted text-foreground/80 font-medium">
-              <CreditCard className={`h-5 w-5 ${!isSidebarOpen && 'mx-auto'}`} />
-              <span className={`ml-3 ${!isSidebarOpen && 'hidden'}`}>Portfolio</span>
+              <CreditCard className="h-5 w-5 mr-3" />
+              <span>Portfolio</span>
             </Link>
             <Link to="#" className="flex items-center p-2 rounded-md hover:bg-muted text-foreground/80 font-medium">
-              <History className={`h-5 w-5 ${!isSidebarOpen && 'mx-auto'}`} />
-              <span className={`ml-3 ${!isSidebarOpen && 'hidden'}`}>Transactions</span>
+              <History className="h-5 w-5 mr-3" />
+              <span>Transactions</span>
             </Link>
             <Link to="#" className="flex items-center p-2 rounded-md hover:bg-muted text-foreground/80 font-medium">
-              <UserCircle className={`h-5 w-5 ${!isSidebarOpen && 'mx-auto'}`} />
-              <span className={`ml-3 ${!isSidebarOpen && 'hidden'}`}>Account</span>
+              <UserCircle className="h-5 w-5 mr-3" />
+              <span>Account</span>
             </Link>
             <Link to="#" className="flex items-center p-2 rounded-md hover:bg-muted text-foreground/80 font-medium">
-              <Settings className={`h-5 w-5 ${!isSidebarOpen && 'mx-auto'}`} />
-              <span className={`ml-3 ${!isSidebarOpen && 'hidden'}`}>Settings</span>
+              <Settings className="h-5 w-5 mr-3" />
+              <span>Settings</span>
             </Link>
           </nav>
         </div>
-      </div>
+      </DrawerContent>
+    </Drawer>
+  );
+
+  return (
+    <div className="flex h-screen bg-background overflow-hidden">
+      {/* Desktop Sidebar */}
+      {!isMobile && (
+        <div className={`bg-card border-r border-border transition-all duration-300 ${isSidebarOpen ? 'w-64' : 'w-20'}`}>
+          <div className="flex items-center justify-between h-16 px-4 border-b border-border">
+            <Link to="/" className={`flex items-center ${!isSidebarOpen && 'justify-center'}`}>
+              <span className={`text-xl font-bold text-primary ${!isSidebarOpen ? 'hidden' : 'block'}`}>Elysium</span>
+              <span className={`text-xl font-bold text-primary ${isSidebarOpen ? 'hidden' : 'block'}`}>E</span>
+            </Link>
+            <Button variant="ghost" size="icon" onClick={toggleSidebar}>
+              {isSidebarOpen ? <ChevronDown className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+            </Button>
+          </div>
+          <div className="p-4">
+            <nav className="space-y-2">
+              <Link to="/dashboard" className="flex items-center p-2 rounded-md bg-primary/10 text-primary font-medium">
+                <BarChart3 className={`h-5 w-5 ${!isSidebarOpen && 'mx-auto'}`} />
+                <span className={`ml-3 ${!isSidebarOpen && 'hidden'}`}>Dashboard</span>
+              </Link>
+              <Link to="#" className="flex items-center p-2 rounded-md hover:bg-muted text-foreground/80 font-medium">
+                <Globe className={`h-5 w-5 ${!isSidebarOpen && 'mx-auto'}`} />
+                <span className={`ml-3 ${!isSidebarOpen && 'hidden'}`}>Markets</span>
+              </Link>
+              <Link to="#" className="flex items-center p-2 rounded-md hover:bg-muted text-foreground/80 font-medium">
+                <CreditCard className={`h-5 w-5 ${!isSidebarOpen && 'mx-auto'}`} />
+                <span className={`ml-3 ${!isSidebarOpen && 'hidden'}`}>Portfolio</span>
+              </Link>
+              <Link to="#" className="flex items-center p-2 rounded-md hover:bg-muted text-foreground/80 font-medium">
+                <History className={`h-5 w-5 ${!isSidebarOpen && 'mx-auto'}`} />
+                <span className={`ml-3 ${!isSidebarOpen && 'hidden'}`}>Transactions</span>
+              </Link>
+              <Link to="#" className="flex items-center p-2 rounded-md hover:bg-muted text-foreground/80 font-medium">
+                <UserCircle className={`h-5 w-5 ${!isSidebarOpen && 'mx-auto'}`} />
+                <span className={`ml-3 ${!isSidebarOpen && 'hidden'}`}>Account</span>
+              </Link>
+              <Link to="#" className="flex items-center p-2 rounded-md hover:bg-muted text-foreground/80 font-medium">
+                <Settings className={`h-5 w-5 ${!isSidebarOpen && 'mx-auto'}`} />
+                <span className={`ml-3 ${!isSidebarOpen && 'hidden'}`}>Settings</span>
+              </Link>
+            </nav>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile Drawer Sidebar */}
+      {isMobile && <MobileSidebar />}
 
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="bg-card border-b border-border h-16 flex items-center justify-between px-6">
+        <header className="bg-card border-b border-border h-16 flex items-center justify-between px-4 md:px-6">
           <div className="flex items-center">
-            <h1 className="text-xl font-bold">Dashboard</h1>
+            {isMobile && (
+              <Button variant="ghost" size="icon" onClick={toggleSidebar} className="mr-2">
+                <Menu className="h-5 w-5" />
+              </Button>
+            )}
+            <h1 className="text-lg md:text-xl font-bold">Dashboard</h1>
           </div>
-          <div className="flex items-center space-x-4">
-            <div className="relative">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search..."
-                className="w-64 pl-8 bg-background"
-              />
-            </div>
+          <div className="flex items-center space-x-2 md:space-x-4">
+            {!isSmallMobile && (
+              <div className="relative hidden sm:block">
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="search"
+                  placeholder="Search..."
+                  className="w-40 md:w-64 pl-8 bg-background"
+                />
+              </div>
+            )}
             <Button variant="outline" size="icon">
               <BellIcon className="h-5 w-5" />
             </Button>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center">
               <Avatar>
                 <AvatarImage src="/placeholder.svg" />
                 <AvatarFallback>AD</AvatarFallback>
               </Avatar>
-              <div className="hidden md:block">
+              <div className="hidden md:block ml-2">
                 <p className="text-sm font-medium">Admin User</p>
                 <p className="text-xs text-muted-foreground">admin@elysium.com</p>
               </div>
@@ -144,16 +216,16 @@ const Dashboard: React.FC = () => {
         </header>
 
         {/* Main content */}
-        <main className="flex-1 overflow-y-auto p-6">
+        <main className="flex-1 overflow-y-auto p-4 md:p-6">
           {/* Portfolio Overview */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6">
             <Card>
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground">Total Balance</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="flex items-baseline">
-                  <div className="text-2xl font-bold">$21,150.75</div>
+                  <div className="text-xl md:text-2xl font-bold">$21,150.75</div>
                   <div className="ml-2 flex items-center text-sm text-green-500">
                     <ArrowUp className="h-4 w-4 mr-1" />
                     12.5%
@@ -168,7 +240,7 @@ const Dashboard: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <div className="flex items-baseline">
-                  <div className="text-2xl font-bold">$3,246.15</div>
+                  <div className="text-xl md:text-2xl font-bold">$3,246.15</div>
                   <div className="ml-2 flex items-center text-sm text-green-500">
                     <ArrowUp className="h-4 w-4 mr-1" />
                     8.3%
@@ -177,38 +249,38 @@ const Dashboard: React.FC = () => {
                 <p className="text-xs text-muted-foreground mt-1">vs previous month</p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="sm:col-span-2 lg:col-span-1">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground">Current Assets</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold">5 Assets</div>
+                <div className="text-xl md:text-2xl font-bold">5 Assets</div>
                 <p className="text-xs text-muted-foreground mt-1">Bitcoin, Ethereum, Solana, Avalanche, USD</p>
               </CardContent>
             </Card>
           </div>
 
           {/* Portfolio Charts */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-6">
             <Card className="lg:col-span-2">
-              <CardHeader>
+              <CardHeader className="pb-3">
                 <CardTitle>Portfolio Performance</CardTitle>
                 <CardDescription>Your portfolio value over time</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="h-80">
+                <div className="h-64 md:h-80">
                   <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={portfolioData}>
+                    <AreaChart data={portfolioData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
                       <defs>
                         <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="5%" stopColor="#8B5CF6" stopOpacity={0.8}/>
                           <stop offset="95%" stopColor="#8B5CF6" stopOpacity={0}/>
                         </linearGradient>
                       </defs>
-                      <XAxis dataKey="date" />
-                      <YAxis />
+                      <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                      <YAxis tick={{ fontSize: 12 }} />
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
-                      <Tooltip />
+                      <Tooltip contentStyle={{ backgroundColor: 'hsl(155 30% 8%)', border: '1px solid hsl(155 15% 15%)', borderRadius: '8px' }} />
                       <Area type="monotone" dataKey="value" stroke="#8B5CF6" fillOpacity={1} fill="url(#colorValue)" />
                     </AreaChart>
                   </ResponsiveContainer>
@@ -216,12 +288,12 @@ const Dashboard: React.FC = () => {
               </CardContent>
             </Card>
             <Card>
-              <CardHeader>
+              <CardHeader className="pb-3">
                 <CardTitle>Asset Allocation</CardTitle>
                 <CardDescription>Current distribution</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="h-80 flex items-center justify-center">
+                <div className="h-64 md:h-80 flex items-center justify-center">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
@@ -229,8 +301,11 @@ const Dashboard: React.FC = () => {
                         cx="50%"
                         cy="50%"
                         labelLine={false}
-                        label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
-                        outerRadius={80}
+                        label={({ name, percent }) => (isSmallMobile || isMobile) ? 
+                          `${name}` : 
+                          `${name} ${(percent * 100).toFixed(0)}%`
+                        }
+                        outerRadius={isMobile ? 60 : 80}
                         fill="#8884d8"
                         dataKey="value"
                       >
@@ -238,7 +313,7 @@ const Dashboard: React.FC = () => {
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip />
+                      <Tooltip contentStyle={{ backgroundColor: 'hsl(155 30% 8%)', border: '1px solid hsl(155 15% 15%)', borderRadius: '8px' }} />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
@@ -247,7 +322,7 @@ const Dashboard: React.FC = () => {
           </div>
 
           {/* Market data and Recent Transactions */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
             <Card>
               <CardHeader>
                 <CardTitle>Market Overview</CardTitle>

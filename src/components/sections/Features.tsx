@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import GlassCard from '../ui/GlassCard';
 import AnimatedText from '../ui/AnimatedText';
-import { Shield, BarChart, RefreshCw, Zap, Terminal, Layers } from 'lucide-react';
+import { MessageSquare, Send, Bot, Shield, SendHorizontal, Telegram } from 'lucide-react';
 
 interface Feature {
   icon: React.ReactNode;
@@ -19,34 +19,34 @@ const Features: React.FC = () => {
   
   const features: Feature[] = [
     {
-      icon: <Terminal className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />,
-      title: "Exchange Connectivity",
-      description: "Connect seamlessly to both Hyperliquid mainnet and testnet environments for all your trading needs."
+      icon: <Telegram className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />,
+      title: "Telegram Integration",
+      description: "Seamlessly connect to Hyperliquid through our advanced Telegram Bot interface for trading on the go."
     },
     {
-      icon: <Layers className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />,
-      title: "Trading Capabilities",
-      description: "Execute both spot and perpetual futures trading with adjustable leverage to maximize your strategies."
+      icon: <Bot className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />,
+      title: "Bot Functionality",
+      description: "Execute both spot and perpetual futures trading with adjustable leverage directly in your Telegram chats."
     },
     {
-      icon: <BarChart className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />,
-      title: "Advanced Order Types",
-      description: "Place market, limit, and scaled orders with fully customizable parameters for precise execution."
+      icon: <MessageSquare className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />,
+      title: "Command System",
+      description: "Send trading commands via chat with intuitive syntax for market, limit, and scaled orders with customizable parameters."
     },
     {
-      icon: <RefreshCw className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />,
-      title: "TWAP Execution",
-      description: "Implement Time-Weighted Average Price strategy to optimize execution of large orders over time."
+      icon: <SendHorizontal className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />,
+      title: "Automated Trading",
+      description: "Schedule TWAP execution and other automated strategies directly through simple Telegram messages."
     },
     {
-      icon: <Zap className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />,
-      title: "Position Management",
-      description: "Monitor and manage your trading positions with comprehensive tools for risk assessment."
+      icon: <Send className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />,
+      title: "Real-time Monitoring",
+      description: "Receive instant notifications and position updates directly in Telegram, with customizable alert settings."
     },
     {
       icon: <Shield className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />,
-      title: "Enhanced Security",
-      description: "Trade with confidence using our password-protected interface and secure connection protocols."
+      title: "Secure Authentication",
+      description: "Trade confidently with our secure Telegram authentication system and encrypted messaging protocols."
     }
   ];
   
@@ -66,13 +66,13 @@ const Features: React.FC = () => {
             tag="p"
           />
           <AnimatedText 
-            text="Advanced Trading Functionality" 
+            text="Telegram Bot Trading" 
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground"
             delay={300}
             tag="h2"
           />
           <AnimatedText 
-            text="Discover the powerful capabilities that make Elysium the preferred platform for professional traders" 
+            text="Trade on Hyperliquid through our powerful Telegram Bot with advanced features designed for professionals" 
             className="text-base sm:text-lg md:text-xl text-foreground/70 mt-4 px-4"
             delay={600}
             tag="p"

@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import GlassCard from '../ui/GlassCard';
 import AnimatedText from '../ui/AnimatedText';
 import { Check, ChevronRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const CallToAction: React.FC = () => {
   const pricingPlans = [
@@ -108,13 +107,13 @@ const CallToAction: React.FC = () => {
                   ))}
                 </ul>
                 
-                <Link to="/sign-in">
+                <a href="https://t.me/Elycium_bot" target="_blank" rel="noopener noreferrer">
                   <Button 
                     className={`w-full ${plan.popular ? 'bg-primary hover:bg-primary/90' : 'bg-background border border-foreground/20 hover:bg-foreground/5 text-foreground'}`}
                   >
                     Get Started
                   </Button>
-                </Link>
+                </a>
               </GlassCard>
             ))}
           </div>
@@ -125,11 +124,11 @@ const CallToAction: React.FC = () => {
               <p className="text-sm sm:text-base text-foreground/70 mb-6 sm:mb-8">Join professional traders who rely on Elysium for executing complex strategies on Hyperliquid exchange.</p>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link to="/sign-in">
+                <a href="https://t.me/Elycium_bot" target="_blank" rel="noopener noreferrer">
                   <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                     Get Started <ChevronRight className="ml-2 h-4 w-4" />
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
           </GlassCard>

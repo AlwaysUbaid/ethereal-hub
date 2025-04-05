@@ -60,12 +60,12 @@ const Navbar: React.FC = () => {
                   {item.name}
                 </a>)}
               
-              {/* Get Started button moved to desktop nav menu and linked to sign-in */}
-              <Link to="/sign-in">
+              {/* Get Started button to Telegram bot */}
+              <a href="https://t.me/Elycium_bot" target="_blank" rel="noopener noreferrer">
                 <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
                   Get Started <ChevronRight className="ml-1 h-4 w-4" />
                 </Button>
-              </Link>
+              </a>
             </div>
             
             {/* Mobile menu button */}
@@ -85,12 +85,12 @@ const Navbar: React.FC = () => {
                   {item.name}
                 </a>)}
               
-              {/* Get Started button added below Contact in mobile menu and linked to sign-in */}
-              <Link to="/sign-in" onClick={() => setMobileMenuOpen(false)}>
+              {/* Get Started button to Telegram bot */}
+              <a href="https://t.me/Elycium_bot" target="_blank" rel="noopener noreferrer" onClick={() => setMobileMenuOpen(false)}>
                 <Button className="bg-primary hover:bg-primary/90 text-primary-foreground mt-4">
                   Get Started <ChevronRight className="ml-1 h-4 w-4" />
                 </Button>
-              </Link>
+              </a>
             </div>
           </div>
         </div>}

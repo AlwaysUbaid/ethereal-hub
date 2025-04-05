@@ -6,7 +6,6 @@ import GlassCard from '../ui/GlassCard';
 import { ChevronRight, ExternalLink } from 'lucide-react';
 import TerminalDemo from '../ui/TerminalDemo';
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Link } from 'react-router-dom';
 
 const Hero: React.FC = () => {
   const terminalRef = useRef<HTMLDivElement>(null);
@@ -89,14 +88,16 @@ const Hero: React.FC = () => {
             animationDelay: '1.2s',
             animationFillMode: 'forwards'
           }}>
-              <Link to="/sign-in">
+              <a href="https://t.me/Elycium_bot" target="_blank" rel="noopener noreferrer">
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
                   Get Started <ChevronRight className="ml-1 h-4 w-4" />
                 </Button>
-              </Link>
-              <Button size="lg" variant="outline" className="border-foreground/20 hover:bg-foreground/5">
-                Explore Features <ExternalLink className="ml-1 h-4 w-4" />
-              </Button>
+              </a>
+              <a href="#features">
+                <Button size="lg" variant="outline" className="border-foreground/20 hover:bg-foreground/5">
+                  Explore Features <ExternalLink className="ml-1 h-4 w-4" />
+                </Button>
+              </a>
             </div>
             
             <div className="pt-4 md:pt-8 opacity-0 animate-fade-in" style={{

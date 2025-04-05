@@ -3,50 +3,9 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import GlassCard from '../ui/GlassCard';
 import AnimatedText from '../ui/AnimatedText';
-import { Check, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 const CallToAction: React.FC = () => {
-  const pricingPlans = [
-    {
-      name: "Basic",
-      price: "$29",
-      period: "/month",
-      features: [
-        "Core features",
-        "Basic analytics",
-        "1 user",
-        "24/7 support"
-      ],
-      popular: false
-    },
-    {
-      name: "Pro",
-      price: "$79",
-      period: "/month",
-      features: [
-        "All Basic features",
-        "Advanced analytics",
-        "5 users",
-        "Priority support",
-        "API access"
-      ],
-      popular: true
-    },
-    {
-      name: "Enterprise",
-      price: "$199",
-      period: "/month",
-      features: [
-        "All Pro features",
-        "Custom solutions",
-        "Unlimited users",
-        "Dedicated account manager",
-        "White labeling"
-      ],
-      popular: false
-    }
-  ];
-  
   return (
     <section id="pricing" className="py-16 sm:py-20 md:py-24 relative overflow-hidden">
       {/* Background decorative elements */}
@@ -77,48 +36,7 @@ const CallToAction: React.FC = () => {
             />
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 sm:mb-12">
-            {pricingPlans.map((plan, index) => (
-              <GlassCard
-                key={index}
-                className={`p-6 sm:p-8 rounded-xl relative ${plan.popular ? 'border-2 border-primary' : ''} opacity-0 animate-fade-in`}
-                style={{ animationDelay: `${index * 0.2}s`, animationFillMode: 'forwards' }}
-              >
-                {plan.popular && (
-                  <div className="absolute top-0 right-0 transform translate-x-1/4 -translate-y-1/4">
-                    <div className="bg-primary text-primary-foreground text-xs px-3 py-1 rounded-full whitespace-nowrap">
-                      Most Popular
-                    </div>
-                  </div>
-                )}
-                
-                <div className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">{plan.name}</div>
-                <div className="flex items-baseline mb-4 sm:mb-6">
-                  <span className="text-3xl sm:text-4xl font-bold">{plan.price}</span>
-                  <span className="text-foreground/60 ml-1">{plan.period}</span>
-                </div>
-                
-                <ul className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start text-sm sm:text-base text-foreground/80">
-                      <Check className="h-4 w-4 sm:h-5 sm:w-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <a href="https://t.me/Elycium_bot" target="_blank" rel="noopener noreferrer">
-                  <Button 
-                    className={`w-full ${plan.popular ? 'bg-primary hover:bg-primary/90' : 'bg-background border border-foreground/20 hover:bg-foreground/5 text-foreground'}`}
-                  >
-                    Get Started
-                  </Button>
-                </a>
-              </GlassCard>
-            ))}
-          </div>
-          
-          <GlassCard className="p-6 sm:p-8 rounded-xl text-center opacity-0 animate-fade-in" style={{ animationDelay: '0.9s', animationFillMode: 'forwards' }}>
+          <GlassCard className="p-6 sm:p-8 rounded-xl text-center opacity-0 animate-fade-in" style={{ animationDelay: '0.3s', animationFillMode: 'forwards' }}>
             <div className="max-w-3xl mx-auto">
               <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4">Ready to elevate your trading experience?</h3>
               <p className="text-sm sm:text-base text-foreground/70 mb-6 sm:mb-8">Join professional traders who rely on Elysium for executing complex strategies on Hyperliquid exchange.</p>

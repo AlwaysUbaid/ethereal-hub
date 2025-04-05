@@ -1,8 +1,7 @@
-
 import React, { useEffect, useState } from 'react';
 import GlassCard from '../ui/GlassCard';
 import AnimatedText from '../ui/AnimatedText';
-import { MessageSquare, Send, Bot, Shield, SendHorizontal, Telegram } from 'lucide-react';
+import { MessageSquare, Send, Bot, Shield, SendHorizontal } from 'lucide-react';
 
 interface Feature {
   icon: React.ReactNode;
@@ -19,7 +18,7 @@ const Features: React.FC = () => {
   
   const features: Feature[] = [
     {
-      icon: <Telegram className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />,
+      icon: <MessageSquare className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />,
       title: "Telegram Integration",
       description: "Seamlessly connect to Hyperliquid through our advanced Telegram Bot interface for trading on the go."
     },

@@ -1,17 +1,21 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { cn } from "@/lib/utils";
 import { ChevronRight, Menu, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { useIsMobile } from "@/hooks/use-mobile";
+
 interface NavItem {
   name: string;
   href: string;
 }
+
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const isMobile = useIsMobile();
+
   useEffect(() => {
     const handleScroll = (): void => {
       const offset = window.scrollY;
@@ -20,6 +24,7 @@ const Navbar: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   useEffect(() => {
     // Disable body scroll when mobile menu is open
     if (mobileMenuOpen) {
@@ -28,22 +33,19 @@ const Navbar: React.FC = () => {
       document.body.classList.remove('overflow-hidden');
     }
   }, [mobileMenuOpen]);
+
   const navItems: NavItem[] = [{
     name: 'Features',
     href: '#features'
   }, {
     name: 'Product',
     href: '#product'
-  }, {
-    name: 'Pricing',
-    href: '#pricing'
-  }, {
-    name: 'Contact',
-    href: '#contact'
   }];
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
+
   return <nav className={cn("fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-300", scrolled ? "bg-background/80 backdrop-blur-lg border-b border-border/50" : "bg-background")}>
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between">
@@ -94,4 +96,5 @@ const Navbar: React.FC = () => {
         </div>}
     </nav>;
 };
+
 export default Navbar;

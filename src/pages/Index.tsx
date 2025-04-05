@@ -6,8 +6,6 @@ import Features from '@/components/sections/Features';
 import StatsSection from '@/components/sections/StatsSection';
 import Testimonials from '@/components/sections/Testimonials';
 import ProductDetails from '@/components/sections/ProductDetails';
-import CallToAction from '@/components/sections/CallToAction';
-import Contact from '@/components/sections/Contact';
 import BackgroundAnimation from '@/components/ui/BackgroundAnimation';
 
 const Index: React.FC = () => {
@@ -48,8 +46,6 @@ const Index: React.FC = () => {
           <StatsSection />
           <Testimonials />
           <ProductDetails />
-          <CallToAction />
-          <Contact />
         </main>
         <footer className="py-8 border-t border-border/30">
           <div className="container mx-auto px-4 md:px-6">

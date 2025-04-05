@@ -2,7 +2,7 @@
 import React from 'react';
 import AnimatedText from '../ui/AnimatedText';
 import GlassCard from '../ui/GlassCard';
-import { Terminal, Code, ServerCrash, Command, Laptop, GitBranch } from 'lucide-react';
+import { MessageSquare, Rocket, Zap, Globe, Shield, Clock } from 'lucide-react';
 
 const ProductDetails: React.FC = () => {
   return (
@@ -21,7 +21,7 @@ const ProductDetails: React.FC = () => {
             tag="p"
           />
           <AnimatedText 
-            text="Command Line Power for Advanced Trading" 
+            text="Telegram Bot for Effortless Trading" 
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground"
             delay={300}
             tag="h2"
@@ -39,11 +39,11 @@ const ProductDetails: React.FC = () => {
             <GlassCard className="p-6">
               <div className="flex items-start space-x-4">
                 <div className="bg-primary/10 p-3 rounded-lg">
-                  <Terminal className="h-6 w-6 text-primary" />
+                  <MessageSquare className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Terminal-Based Interface</h3>
-                  <p className="text-foreground/70">Elysium's command-line interface allows for rapid execution of complex trading strategies with minimal latency.</p>
+                  <h3 className="text-xl font-semibold mb-2">Telegram Integration</h3>
+                  <p className="text-foreground/70">Access and control your trades directly from Telegram with our intuitive and responsive bot interface.</p>
                 </div>
               </div>
             </GlassCard>
@@ -51,11 +51,11 @@ const ProductDetails: React.FC = () => {
             <GlassCard className="p-6">
               <div className="flex items-start space-x-4">
                 <div className="bg-primary/10 p-3 rounded-lg">
-                  <Code className="h-6 w-6 text-primary" />
+                  <Rocket className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Script-Based Automation</h3>
-                  <p className="text-foreground/70">Create, save, and run custom trading scripts to automate repeated tasks and complex trading sequences.</p>
+                  <h3 className="text-xl font-semibold mb-2">One-Click Trading</h3>
+                  <p className="text-foreground/70">Execute trades with simple commands through our Telegram bot, making trading accessible from anywhere.</p>
                 </div>
               </div>
             </GlassCard>
@@ -63,11 +63,11 @@ const ProductDetails: React.FC = () => {
             <GlassCard className="p-6">
               <div className="flex items-start space-x-4">
                 <div className="bg-primary/10 p-3 rounded-lg">
-                  <ServerCrash className="h-6 w-6 text-primary" />
+                  <Zap className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Low Latency Execution</h3>
-                  <p className="text-foreground/70">Optimized network protocols ensure your orders reach the exchange with minimal delay, even during high volatility.</p>
+                  <h3 className="text-xl font-semibold mb-2">Instant Execution</h3>
+                  <p className="text-foreground/70">Our bot ensures your orders reach the exchange quickly, even during high market volatility.</p>
                 </div>
               </div>
             </GlassCard>
@@ -77,11 +77,11 @@ const ProductDetails: React.FC = () => {
             <GlassCard className="p-6">
               <div className="flex items-start space-x-4">
                 <div className="bg-primary/10 p-3 rounded-lg">
-                  <Command className="h-6 w-6 text-primary" />
+                  <Globe className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Advanced Command Set</h3>
-                  <p className="text-foreground/70">Over 50 specialized commands designed specifically for professional trading on Hyperliquid exchange.</p>
+                  <h3 className="text-xl font-semibold mb-2">Trade From Anywhere</h3>
+                  <p className="text-foreground/70">Use Elysium on any device that supports Telegram, from smartphones to desktops, with full functionality.</p>
                 </div>
               </div>
             </GlassCard>
@@ -89,11 +89,11 @@ const ProductDetails: React.FC = () => {
             <GlassCard className="p-6">
               <div className="flex items-start space-x-4">
                 <div className="bg-primary/10 p-3 rounded-lg">
-                  <Laptop className="h-6 w-6 text-primary" />
+                  <Shield className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Cross-Platform Compatibility</h3>
-                  <p className="text-foreground/70">Available for Windows, macOS, and Linux, with consistent behavior and performance across all platforms.</p>
+                  <h3 className="text-xl font-semibold mb-2">Secure Trading</h3>
+                  <p className="text-foreground/70">Benefit from Telegram's encryption while enjoying robust security features to protect your trading activities.</p>
                 </div>
               </div>
             </GlassCard>
@@ -101,11 +101,11 @@ const ProductDetails: React.FC = () => {
             <GlassCard className="p-6">
               <div className="flex items-start space-x-4">
                 <div className="bg-primary/10 p-3 rounded-lg">
-                  <GitBranch className="h-6 w-6 text-primary" />
+                  <Clock className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2">Version Control</h3>
-                  <p className="text-foreground/70">Track and manage different versions of your trading strategies with built-in versioning functionality.</p>
+                  <h3 className="text-xl font-semibold mb-2">24/7 Availability</h3>
+                  <p className="text-foreground/70">Access your trading bot anytime, anywhere through Telegram's reliable messaging platform.</p>
                 </div>
               </div>
             </GlassCard>
